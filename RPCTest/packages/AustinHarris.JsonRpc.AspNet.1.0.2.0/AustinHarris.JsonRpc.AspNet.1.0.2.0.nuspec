@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>AustinHarris.JsonRpc.AspNet</id>
+    <version>1.0.2.0</version>
+    <title>JSON-RPC.NET AspNet</title>
+    <authors>Austin Harris</authors>
+    <owners>Austin Harris</owners>
+    <licenseUrl>http://jsonrpc2.codeplex.com/license</licenseUrl>
+    <projectUrl>http://jsonrpc2.codeplex.com/</projectUrl>
+    <iconUrl>http://download-codeplex.sec.s-msft.com/Download?ProjectName=jsonrpc2&amp;DownloadId=487107</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Asp.Net handler for JsonRpc.Net</description>
+    <releaseNotes>Bug fix release.
+Fixes a problem with the closing of the response stream.</releaseNotes>
+    <copyright />
+    <language>en-US</language>
+    <tags>Json Rpc Asp.Net ASP Json-Rpc.Net Json-Rpc JsonRpc Json.net</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="Newtonsoft.Json" version="4.5.1" />
+        <dependency id="AustinHarris.JsonRpc" version="1.0.0" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
