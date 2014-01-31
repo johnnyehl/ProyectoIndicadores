@@ -1,51 +1,70 @@
 /*
  * VARIABLES
- * Description: All Global Vars
+ * Description: Variables Globales
  */
-	// Impacts the responce rate of some of the responsive elements (lower value affects CPU but improves speed)
+	// Impacto de respuesta de algunos elementos de respuesta (rebundante lo se) pero se refiere a
+	// elementos que nos dan como respuesta algun dato, a menor valor afectara el uso del cpu pero mejora la velocidad
+	// de respuesta de datos (Funciones Ajax mas que nada)
 	$.throttle_delay = 350;
 	
-	// The rate at which the menu expands revealing child elements on click
+	// La velocidad en la que se despliegan los menus secundarios al hacer click
+	// Al colocar un numero mayor el sub-menu se deslizara mas LENTO, 
+	// Al colocar un numero menor el sub-menu se deslizara mas RAPIDO.
+	// Clase de Ingles "Menu" (Menu) "Speed" (Rapidez o Velocidad)
 	$.menu_speed = 235;
 	
 	// Note: You will also need to change this variable in the "variable.less" file.
+	// Esta variable maneja el alto del Navbar (la parte del menu al lado izquierdo)
+	// Al subir el numero se reduce, no es muy necesario esto, tambien funciona con otra variable mas abajo.
 	$.navbar_height = 49; 
 
 /*
  * APP DOM REFERENCES
  * Description: Obj DOM reference, please try to avoid changing these
  */	
+ // Aqui no cambien nada esta parte es como funcionan uhmm se podria decir la estructura
+ // Tenemos por defecto el body (cuerpo del diseño)
+ // El panel a la izquierda que es donde va el menu
+ // y los Accesos directos
 	$.root_ = $('body');
 	$.left_panel = $('#left-panel');
 	$.shortcut_dropdown = $('#shortcut');
 
 /*
- * APP CONFIGURATION
- * Description: Enable / disable certain theme features here
+ * APP Configuracion
+ * Descripcion: True / false para habilitar o no ciertas caracteristicas del diseño ^^
  */		
-	$.navAsAjax = true; // Your left nav in your app will no longer fire ajax calls
+	// Esta opcion activa o desactiva la funciona ajax en el panel izquierdo, osea habilita
+	// la carga inmediata de lo requerido en el main container (Ajax function)
+	// Para mas dudas, al desabilitar esta funciona, funcionara como 1 pagina normal, al dar click se movera todo XD
+	$.navAsAjax = true;
 	
-	// Please make sure you have included "jarvis.widget.js" for this below feature to work
+	// Necesita tener incluido el "jarvis.widget.js" para que funcione esta opcion
+	// No se mucho de esto (no lo veo en uso), pero los Widgets son esos atajos que muestran datos como los del reloj de windows 7
+	// el clima y esas weadas que usan en su pc para lentear ^^ y supongo que Jarvis lo sacaron de ironman, debe ser 1 stilo
 	$.enableJarvisWidgets = true;
-	// $.enableJarvisWidgets needs to be true it to work (could potentially 
-	// crash your webApp if you have too many widgets running on mobile view)	
+	// Para la opcion siguiente debe estar activa la de arriba para que funcione sino nada
+	// Recordar que a mas widgets en 1 movil, mas posibilidad de que cuelguen el navegador del movil ^^
 	$.enableMobileWidgets = false;
 	
-	// Plugin dependency "smartclick.js"
-	$.enableFastClick = false; // remove the 300 ms delay in iDevices
+	// Depende del plugin "smartclick.js"
+	$.enableFastClick = false; // elimina el 300 ms de delay en iDevices (iDevices, son esas weadas de Ipod, Iphone, bla bla bla, Producto de las manzanas)
 
 
 /*
- * DETECT MOBILE DEVICES
- * Description: Detects mobile device - if any of the listed device is detected
- * a class is inserted to $.root_ and the variable $.device is decleard. 
+ * Detector de Dispositivos Moviles
+ * Descripcion: Simple, detecta dispositivos mobiles o moviles - Si se detecta alguno
+ * se inserta una clase a $.root_ y la variable $.device is declarada para su uso.
  */	
 
-/* so far this is covering most hand held devices */
+/* Aqui se declara la mayoria de dispositivos moviles, no veo mi "Alcatel a blanco y negro" XD */
 var ismobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+// Les agrego 1 poco de informaicon sobre esto, la declaracion esta usando 1 "navigator.userAgent" para detectar el navegador
+// segun el agente y lo pasa a caracteres en minisculas y puedan ser comparados con los ya agregados, en algunos casos los nombres
+// salen iPhone, al pasarlo a iphone, ya es detectado :)
 
 	if (!ismobile) {
-		// Desktop
+		// Escritorio (pcs, latops, bla bla)
 		$.root_.addClass("desktop-detected");
 		$.device = "desktop";
 	} else {
@@ -53,18 +72,17 @@ var ismobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.tes
 		$.root_.addClass("mobile-detected");
 		$.device = "mobile";
 		
-		// remove 300ms delay from apple touch devices
-		// dependency: plugin/smartclick/smartclick.js
+		// Esto va con 1 opcion ya explicada arriba, si se activa, remueve el delay en los Apple OS
 		if ($.enableFastClick){
 			$('nav ul a').noClickDelay();
 			$('#hide-menu a').noClickDelay();
 		}
 	}
 
-/* ~ END: CHECK MOBILE DEVICE */
+/* ~ Fin del chekeo de moviles */
 
 /*
- * DOCUMENT LOADED EVENT
+ * DOCUMENTO CARGADO DE EVENTOS
  * Description: Fire when DOM is ready
  */
 
@@ -1090,15 +1108,19 @@ function loadScript(scriptName, callback) {
 
 /* ~ END: LOAD SCRIPTS */
 
+/* Aqui comenzamos con la carga de Paginas explicada ayer */
+
+
 /*
-* APP AJAX REQUEST SETUP
-* Description: Executes and fetches all ajax requests also
-* updates naivgation elements to active
+* APP - Configuracion de Solicitudes Ajax
+* Descripcion: Ejecuta y recupera todas las peticiones ajax tambien
+* actualiza los elemenots activos en la navegacion
 */
 if($.navAsAjax)
 {
-    // fire this on page load if nav exists
+	// Si existe el parametro Nav, lanza lo siguiente en la pagina de carga
     if ($('nav').length) {
+	// Revision si la url existe (esta funciona esta mas abajo, siguiendo de esta)
 	    checkURL();
     };
 
@@ -1107,6 +1129,8 @@ if($.navAsAjax)
 	    $this = $(e.currentTarget);
 
 	    // if parent is not active then get hash, or else page is assumed to be loaded
+		//Aun no entiendo esta linea tengo que hacer pruebas aunque arriba dice
+		// si el parent no está activo a continuación, obtener hash, o la página de otro se supone que se va a cargar
 	    if (!$this.parent().hasClass("active") && !$this.attr('target')) {
 
 		    // update window with hash
@@ -1125,23 +1149,24 @@ if($.navAsAjax)
 
     });
 
-    // fire links with targets on different window
+	// En caso de las opciones "_blank", al hacer click al evento, esto generara 1 nueva ventana
+	// con lo requerido (es la opcion comun en html)
     $(document).on('click', 'nav a[target="_blank"]', function(e) {
 	    e.preventDefault();
 	    $this = $(e.currentTarget);
-
+		//abre una nueva ventana
 	    window.open($this.attr('href'));
     });
 
-    // fire links with targets on same window
+    // enlaces con target en la misma ventana "_top"
     $(document).on('click', 'nav a[target="_top"]', function(e) {
 	    e.preventDefault();
 	    $this = $(e.currentTarget);
-
+		//abre una nueva carga en el main
 	    window.location = ($this.attr('href'));
     });
 
-    // all links with hash tags are ignored
+	// Todos los enlaces con el tag "#" son ignorados
     $(document).on('click', 'nav a[href="#"]', function(e) {
 	    e.preventDefault();
     });
@@ -1152,12 +1177,12 @@ if($.navAsAjax)
     });
 }
 
-// CHECK TO SEE IF URL EXISTS
+// Revision de la existencia de las URLS
 function checkURL() {
 
-	//get the url by removing the hash
+	//obtenemos la url eliminando el hash
 	url = location.hash.replace(/^#/, '');
-
+// Aqui definimos el container y el div que se usara en este caso "content"
 	container = $('#content');
 	// Do this if url exists (for page refresh, etc...)
 	if (url) {
@@ -1171,7 +1196,7 @@ function checkURL() {
 		document.title = (title || document.title);
 		//console.log("page title: " + document.title);
 
-		// parse url to jquery
+		// pasamos la url a jquery
 		loadURL(url, container);
 	} else {
 
@@ -1186,28 +1211,35 @@ function checkURL() {
 }
 
 // LOAD AJAX PAGES
-
+// Cargas de URLS
 function loadURL(url, container) {
 	//console.log(container)
 
 	$.ajax({
+		//Metodo GET o POST
+		//en este caso GET para obtener la url
 		type : "GET",
 		url : url,
+		//Tipo de datos HTML
 		dataType : 'html',
+		//Activamos el Cache para guardar datos y no llamar algo ya cargado mas de 1 vez
 		cache : true, // (warning: this will cause a timestamp and will call the request twice)
 		beforeSend : function() {
 			// cog placed
-			container.html('<h1><i class="fa fa-cog fa-spin"></i> Loading...</h1>');
+			container.html('<h1><i class="fa fa-cog fa-spin"></i> Cargando...</h1>');
 
 			// only draw breadcrumb if it is content material
 			// TODO: check if document title injection refreshes in IE...
 			// TODO: see the framerate for the animation in touch devices
 			if (container[0] == $("#content")[0]) {
 				drawBreadCrumb();
-				// update title with breadcrumb...
+				// Actualizamos el titulo con la funcion breadcrumb... (mas abajo esta)
+				// revisa el "li" << que es la lista del menu (last-child) el ultimo submenu que clickeamos
 				document.title = $(".breadcrumb li:last-child").text();
-				// scroll up
+				// Nos  manda arriba animadamente al hacer 1 click en algun enlace que cargue en el container
 				$("html, body").animate({
+				// Aqui el numero de la altura (0 significa TODO ARRIBA) a mas numero nos llevara 1 poco mas abajo
+				// si colocas 50 entonces contara 50px (creo que si es px) hacia a bajo y ahi te colocara
 					scrollTop : 0
 				}, "fast");
 			} else {
@@ -1224,6 +1256,7 @@ function loadURL(url, container) {
 			// cog replaced here...
 			// alert("success")
 			
+			//Css del container lol 
 			container.css({
 				opacity : '0.0'
 			}).html(data).delay(50).animate({
@@ -1232,8 +1265,9 @@ function loadURL(url, container) {
 			
 
 		},
+		//En caso de no encontrar la pagina solicitada enviamos 1 mensaje de error
 		error : function(xhr, ajaxOptions, thrownError) {
-			container.html('<h4 style="margin-top:10px; display:block; text-align:left"><i class="fa fa-warning txt-color-orangeDark"></i> Error 404! Page not found.</h4>');
+			container.html('<h4 style="margin-top:10px; display:block; text-align:left"><i class="fa fa-warning txt-color-orangeDark"></i> Error 404! Pagina No encontrada.</h4>');
 		},
 		async : false
 	});
@@ -1246,7 +1280,7 @@ function drawBreadCrumb() {
 
 	//console.log("breadcrumb")
 	$("#ribbon ol.breadcrumb").empty();
-	$("#ribbon ol.breadcrumb").append($("<li>Home</li>"));
+	$("#ribbon ol.breadcrumb").append($("<li>Inicio</li>"));
 	$('nav li.active > a').each(function() {
 		$("#ribbon ol.breadcrumb").append($("<li></li>").html($.trim($(this).clone().children(".badge").remove().end().text())));
 	});
