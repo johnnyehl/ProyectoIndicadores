@@ -53,19 +53,40 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
     <script language="javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
+            var resultado;
 
-           // alert("hola mundo");
+            $("#boton21").on("click", function () {
+                
+                // suceso evento click;
+                $(function rpc(mensaje) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "Application/Json-Rpc; charset=utf-8",
+                        url: "http://localhost:38999/json.rpc?jsonrpc=",
+                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "helloWorld", "params": ["hello"], "id": 1 }),
+                        dataType: "json",
+                        traditional: true,
+                        success: function (msg) {
+                            alert(msg.result);
+                            resultado = msg.result;
+                            if (resultado == "Hellos World hello")
+                                window.location = ("inicio.aspx");
+                            else
+                                alert("Horror");
+                        }
 
-            $("#boto").on("click", function(){
+                    });
 
-                alert("el botón fue presionado");
-                window.location =("inicio.aspx");
-
+                });
+                // END suceso evento click;
             });
 
         });
 
+        
+ 
+        /*
         $(function registrarUser(_userName, _email, _password, 
 
                                  _confirPassword ,  _PrimerNombre, _SegundoNombre,  
@@ -83,9 +104,10 @@
         })
 
         $("#boton21").on("click", function () {
-            rpc($("#username").val(), $("#email").val(), $("#passwod").val(), $("#password1").val(), $("#fname").val(), $("#lname").val(), $("#genero").val(), $("#activation").val());
+            // rpc($("#username").val(), $("#email").val(), $("#passwod").val(), $("#password1").val(), $("#fname").val(), $("#lname").val(), $("select#genero").val(), $("#activation").val());
+            alert("Hola soy yo");
         }
-                    )
+                    );*/
 
     </script>
 
