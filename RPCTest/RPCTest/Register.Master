@@ -49,27 +49,29 @@
     </asp:ContentPlaceHolder>
 
     <!-- script-->
+    <script src="Scripts/libs/jquery-2.0.2.min.js"></script>
+    
 
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-
-    <script language="javascript">
+    <script >
+        
         $(document).ready(function () {
-            var resultado;
+            
 
             $("#boton21").on("click", function () {
-                
+                //validar form
                 // suceso evento click;
                 $(function rpc(mensaje) {
                     $.ajax({
                         type: "POST",
                         contentType: "Application/Json-Rpc; charset=utf-8",
                         url: "http://localhost:38999/json.rpc?jsonrpc=",
-                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "helloWorld", "params": ["hello"], "id": 1 }),
+                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "lista", "params": ["aaa"], "id": 1 }),
                         dataType: "json",
                         traditional: true,
                         success: function (msg) {
-                            alert(msg.result);
-                            resultado = msg.result;
+                            alert(msg.result[0])
+                         
+                            resultado = "";
                             if (resultado == "Hellos World hello")
                                 window.location = ("inicio.aspx");
                             else
@@ -128,11 +130,11 @@
 				<!-- END AJAX-DROPDOWN -->
 			</div>
 
-			<span id="login-header-space"> <span class="hidden-mobile">Already registered?</span> <a href="#" id="boton21" onclick="" class="btn btn-danger">REGISRARME</a> </span>
+			<span id="login-header-space"> <span class="hidden-mobile">¿Ya está registrado?</span> <a href="login.aspx" id="boton21" onclick="" class="btn btn-danger">Ingrese aquí</a> </span>
 
 		</header>
 
-		<div id="main" role="main">
+<div id="main" role="main">
 
 			<!-- MAIN CONTENT -->
 			<div id="content" class="container">
@@ -175,32 +177,32 @@
 
 							<form action="http://192.241.236.31/test3.smartadmin/php/demo-register.php" id="smart-form-register" class="smart-form client-form">
 								<header>
-									Registration is FREE*
+									CREAR UNA NUEVA CUENTA
 								</header>
 
 								<fieldset>
 									<section>
 										<label class="input"> <i class="icon-append fa fa-user"></i>
-											<input type="text" name="username" placeholder="Username" id="username">
-											<b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
+											<input type="text" name="username" placeholder="Nombre de usuario">
+											<b class="tooltip tooltip-bottom-right">Se necesita para entrar en la web</b> </label>
 									</section>
 
 									<section>
 										<label class="input"> <i class="icon-append fa fa-envelope"></i>
-											<input type="email" name="email" placeholder="Email address" id="email">
-											<b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
+											<input type="email" name="email" placeholder="Dirección de correo electrónico">
+											<b class="tooltip tooltip-bottom-right">Se necesita para verificar su cuenta</b> </label>
 									</section>
 
 									<section>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
-											<input type="password" name="password" placeholder="Password" id="password">
-											<b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+											<input type="password" name="password" placeholder="Contraseña" id="password">
+											<b class="tooltip tooltip-bottom-right">No olvide su contraseña</b> </label>
 									</section>
 
 									<section>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
-											<input type="password" name="passwordConfirm" placeholder="Confirm password" id="password1">
-											<b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+											<input type="password" name="passwordConfirm" placeholder="Confirmar contraseña">
+											<b class="tooltip tooltip-bottom-right">No olvide su contraseña</b> </label>
 									</section>
 								</fieldset>
 
@@ -208,45 +210,37 @@
 									<div class="row">
 										<section class="col col-6">
 											<label class="input">
-												<input type="text" name="firstname" placeholder="First name" id="fname" />
+												<input type="text" name="First name" placeholder="Nombres">
 											</label>
 										</section>
 										<section class="col col-6">
 											<label class="input">
-												<input type="text" name="lastname" placeholder="Last name" id="lname"/>
+												<input type="text" name="Last name" placeholder="Apellidos">
 											</label>
 										</section>
 									</div>
 
 									<div class="row">
 										<section class="col col-6">
-											<label class="select" id="genero">
+											<label class="select">
 												<select name="gender">
-													<option value="0" selected="" disabled="">Gender</option>
-													<option value="1">Male</option>
-													<option value="2">Female</option>
-													<option value="3">Prefer not to answer</option>
+													<option value="0" selected="" disabled="">Género</option>
+													<option value="1">Masculino</option>
+													<option value="2">Femenino</option>
+								
 												</select> <i></i> </label>
 										</section>
 										<section class="col col-6">
 											<label class="input"> <i class="icon-append fa fa-calendar"></i>
-												<input type="text" name="request" placeholder="Request activation on" class="datepicker" id="activation" data-dateformat='dd/mm/yy'>
+												<input type="text" name="request" placeholder="Fecha de nacimiento" class="datepicker" data-dateformat='dd/mm/yy'>
 											</label>
 										</section>
 									</div>
 
-									<section>
-										<label class="checkbox">
-											<input type="checkbox" name="subscription" id="subscription">
-											<i></i>I want to receive news and special offers</label>
-										<label class="checkbox">
-											<input type="checkbox" name="terms" id="terms">
-											<i></i>I agree with the <a href="#" data-toggle="modal" data-target="#myModal"> Terms and Conditions </a></label>
-									</section>
 								</fieldset>
 								<footer>
-									<button type="submit" class="btn btn-primary" id="boton1">
-										Register
+									<button type="submit" class="btn btn-primary">
+										Registrarme
 									</button>
 								</footer>
 
@@ -259,19 +253,7 @@
 							</form>
 
 						</div>
-						<p class="note text-center">*FREE Registration ends on October 2015.</p>
-						<h5 class="text-center">- Or sign in using -</h5>
-						<ul class="list-inline text-center">
-							<li>
-								<a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li>
-								<a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li>
-								<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
-							</li>
-						</ul>
+						
 					</div>
 				</div>
 			</div>
@@ -486,11 +468,10 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
-
 		<!--================================================== -->	
 
 		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
-		<script src="js/plugin/pace/pace.min.js"></script>
+        <script src="Scripts/plugin/pace/pace.min.js"></script>
 
 	    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
 	    <script src="../../ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
@@ -502,38 +483,38 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events 		
 		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
 
-		<!-- BOOTSTRAP JS -->		
-		<script src="js/bootstrap/bootstrap.min.js"></script>
-    
+		<!-- BOOTSTRAP JS -->
+        <script src="Scripts/bootstrap/bootstrap.min.js"></script>
+
 		<!-- CUSTOM NOTIFICATION -->
-		<script src="js/notification/SmartNotification.min.js"></script>
+        <script src="Scripts/notification/SmartNotification.min.js"></script>
 
 		<!-- JARVIS WIDGETS -->
-		<script src="js/smartwidgets/jarvis.widget.min.js"></script>
-		
+        <script src="Scripts/smartwidgets/jarvis.widget.min.js"></script>
+
 		<!-- EASY PIE CHARTS -->
-		<script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
-		
+        <script src="Scripts/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
 		<!-- SPARKLINES -->
-		<script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
-		
+        <script src="Scripts/plugin/sparkline/jquery.sparkline.min.js"></script>
+
 		<!-- JQUERY VALIDATE -->
-		<script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
-		
+        <script src="Scripts/plugin/jquery-validate/jquery.validate.min.js"></script>
+
 		<!-- JQUERY MASKED INPUT -->
-		<script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
-		
+        <script src="Scripts/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
 		<!-- JQUERY SELECT2 INPUT -->
-		<script src="js/plugin/select2/select2.min.js"></script>
+        <script src="Scripts/plugin/select2/select2.min.js"></script>
 
 		<!-- JQUERY UI + Bootstrap Slider -->
-		<script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
-		
+        <script src="Scripts/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
 		<!-- browser msie issue fix -->
-		<script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
-		
+        <script src="Scripts/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
 		<!-- SmartClick: For mobile devices -->
-		<script src="js/plugin/smartclick/smartclick.js"></script>
+        <script src="Scripts/plugin/smartclick/smartclick.js"></script>
 		
 		<!--[if IE 7]>
 			
@@ -542,7 +523,7 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 		<![endif]-->
 		
 		<!-- MAIN APP JS FILE -->
-		<script src="js/app.js"></script>
+        <script src="Scripts/app.js"></script>
 
 		<script type="text/javascript">
 		    runAllForms();
@@ -599,31 +580,31 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 
 		            // Messages for form validation
 		            messages: {
-		                login: {
-		                    required: 'Please enter your login'
+		                username: {
+		                    required: 'Por favor, ingrese su nombre de usuario'
 		                },
 		                email: {
-		                    required: 'Please enter your email address',
-		                    email: 'Please enter a VALID email address'
+		                    required: 'Introduzca su dirección de correo electrónico',
+		                    email: 'Por favor, introduce una dirección de correo electrónico válida'
 		                },
 		                password: {
-		                    required: 'Please enter your password'
+		                    required: 'Por favor, introduzca su contraseña'
 		                },
 		                passwordConfirm: {
-		                    required: 'Please enter your password one more time',
-		                    equalTo: 'Please enter the same password as above'
+		                    required: 'Por favor, introduzca su contraseña una vez más',
+		                    equalTo: 'Por favor, introduzca la misma contraseña que el anterior'
 		                },
 		                firstname: {
-		                    required: 'Please select your first name'
+		                    required: 'Por favor, seleccione su nombre de pila'
 		                },
 		                lastname: {
-		                    required: 'Please select your last name'
+		                    required: 'Por favor seleccione su apellido'
 		                },
 		                gender: {
-		                    required: 'Please select your gender'
+		                    required: 'Seleccione su género'
 		                },
 		                terms: {
-		                    required: 'You must agree with Terms and Conditions'
+		                    required: 'Usted debe estar de acuerdo con los Términos y Condiciones'
 		                }
 		            },
 
