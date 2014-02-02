@@ -57,34 +57,11 @@
         $(document).ready(function () {
             
 
-            $("#boton21").on("click", function () {
-                //validar form
-                // suceso evento click;
-                $(function rpc(mensaje) {
-                    $.ajax({
-                        type: "POST",
-                        contentType: "Application/Json-Rpc; charset=utf-8",
-                        url: "http://localhost:38999/json.rpc?jsonrpc=",
-                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "lista", "params": ["aaa"], "id": 1 }),
-                        dataType: "json",
-                        traditional: true,
-                        success: function (msg) {
-                            alert(msg.result[0])
-                         
-                            resultado = "";
-                            if (resultado == "Hellos World hello")
-                                window.location = ("inicio.aspx");
-                            else
-                                alert("Horror");
-                        }
+             $("#btnlogin").on("click", function () {
+                 window.location = ("login.aspx");
+             });
 
-                    });
-
-                });
-                // END suceso evento click;
-            });
-
-        });
+       });
 
         
  
@@ -130,7 +107,7 @@
 				<!-- END AJAX-DROPDOWN -->
 			</div>
 
-			<span id="login-header-space"> <span class="hidden-mobile">¿Ya está registrado?</span> <a href="login.aspx" id="boton21" onclick="" class="btn btn-danger">Ingrese aquí</a> </span>
+			<span id="login-header-space"> <span class="hidden-mobile">¿Ya está registrado?</span> <a href="login.aspx" id="btnlogin" onclick="" class="btn btn-danger">Ingrese aquí</a> </span>
 
 		</header>
 
@@ -175,7 +152,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
 						<div class="well no-padding">
 
-							<form action="http://192.241.236.31/test3.smartadmin/php/demo-register.php" id="smart-form-register" class="smart-form client-form">
+							<form action="#" id="smart-form-register" class="smart-form client-form">
 								<header>
 									CREAR UNA NUEVA CUENTA
 								</header>
@@ -210,12 +187,12 @@
 									<div class="row">
 										<section class="col col-6">
 											<label class="input">
-												<input type="text" name="First name" placeholder="Nombres">
+												<input type="text" name="firstname" placeholder="Nombres" id="firstname">
 											</label>
 										</section>
 										<section class="col col-6">
 											<label class="input">
-												<input type="text" name="Last name" placeholder="Apellidos">
+												<input type="text" name="lastname" placeholder="Apellidos">
 											</label>
 										</section>
 									</div>
@@ -239,7 +216,7 @@
 
 								</fieldset>
 								<footer>
-									<button type="submit" class="btn btn-primary">
+									<button type="submit" class="btn btn-primary" onsubmit="formulario();">
 										Registrarme
 									</button>
 								</footer>
@@ -527,7 +504,9 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 
 		<script type="text/javascript">
 		    runAllForms();
-
+            //
+		   
+            ///
 		    // Model i agree button
 		    $("#i-agree").click(function () {
 		        $this = $("#terms");
@@ -565,15 +544,22 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 		                    equalTo: '#password'
 		                },
 		                firstname: {
-		                    required: true
+		                    required: true,
+		                    minlength: 3,
+		                    maxlength: 30
 		                },
 		                lastname: {
-		                    required: true
+		                    required: true,
+		                    minlength: 3,
+		                    maxlength: 40
 		                },
 		                gender: {
 		                    required: true
 		                },
 		                terms: {
+		                    required: true
+		                },
+		                request: {
 		                    required: true
 		                }
 		            },
@@ -605,16 +591,45 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 		                },
 		                terms: {
 		                    required: 'Usted debe estar de acuerdo con los Términos y Condiciones'
+		                },
+		                request: {
+		                    required: 'Usted debe ingresar su fecha de nacimiento'
 		                }
 		            },
 
 		            // Ajax form submition
 		            submitHandler: function (form) {
-		                $(form).ajaxSubmit({
+                        ///funcion que controla el objeto JSON devuelto por el web service
+		                $(function rpc(mensaje) {
+		                    $.ajax({
+		                        type: "POST",
+		                        contentType: "Application/Json-Rpc; charset=utf-8",
+		                        url: "http://localhost:38999/json.rpc?jsonrpc=",
+		                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "lista", "params": ["aaa"], "id": 1 }),
+		                        dataType: "json",
+		                        traditional: true,
+		                        success: function (msg) {
+		                            //alert(msg.result[0])
+		                            if (msg.result[0] == "uno"){
+		                                window.location = ("login.aspx");
+		                            }
+		                            else {
+		                                alert("datos incorrectos");
+		                                $("#firstname").css({ background: "#FF0000" });
+		                            }
+		                        }
+
+		                    });
+
+		                });///END
+
+                        //funcion que ejecuta la accion del formulario
+		               /* $(form).ajaxSubmit({
 		                    success: function () {
 		                        $("#smart-form-register").addClass('submited');
 		                    }
-		                });
+		                });*/
+		                //fin que ejecuta la accion del formulario
 		            },
 
 		            // Do not change code below

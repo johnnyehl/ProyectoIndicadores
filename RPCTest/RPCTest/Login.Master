@@ -44,6 +44,9 @@
     <!-- GOOGLE FONT -->
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700" />
 
+    <!-- script-->
+    <script src="Scripts/libs/jquery-2.0.2.min.js"></script>
+
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -59,7 +62,7 @@
 				<!-- END AJAX-DROPDOWN -->
 			</div>
 
-			<span id="login-header-space"> <span class="hidden-mobile">Need an account?</span> <a href="register.html" class="btn btn-danger">Creat account</a> </span>
+			<span id="login-header-space"> <span class="hidden-mobile">¿Necesitas una cuenta?</span> <a href="register.html" class="btn btn-danger">Crear cuenta</a> </span>
 
 		</header>
 
@@ -105,7 +108,7 @@
 						<div class="well no-padding">
 							<form action="http://192.241.236.31/test3.smartadmin/index.html" id="login-form" class="smart-form client-form">
 								<header>
-									Sign In
+									Iniciar Sesión
 								</header>
 
 								<fieldset>
@@ -114,28 +117,28 @@
 										<label class="label">E-mail</label>
 										<label class="input"> <i class="icon-append fa fa-user"></i>
 											<input type="email" name="email">
-											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b></label>
+											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Por favor, introduzca la dirección de correo electrónico / nombre de usuario</b></label>
 									</section>
 
 									<section>
-										<label class="label">Password</label>
+										<label class="label">Contraseña</label>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
 											<input type="password" name="password">
-											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b> </label>
+											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Introduzca su contraseña</b> </label>
 										<div class="note">
-											<a href="javascript:void(0)">Forgot password?</a>
+											<a href="javascript:void(0)">¿Olvidaste tu contraseña?</a>
 										</div>
 									</section>
 
 									<section>
 										<label class="checkbox">
 											<input type="checkbox" name="remember" checked="">
-											<i></i>Stay signed in</label>
+											<i></i>No cerrar sesión</label>
 									</section>
 								</fieldset>
 								<footer>
 									<button type="submit" class="btn btn-primary">
-										Sign in
+										Ingresar
 									</button>
 								</footer>
 							</form>
@@ -177,38 +180,38 @@
 		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events 		
 		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
 
-		<!-- BOOTSTRAP JS -->		
-		<script src="js/bootstrap/bootstrap.min.js"></script>
+		<!-- BOOTSTRAP JS -->
+        <script src="Scripts/bootstrap/bootstrap.min.js"></script>
 
 		<!-- CUSTOM NOTIFICATION -->
-		<script src="js/notification/SmartNotification.min.js"></script>
+        <script src="Scripts/notification/SmartNotification.min.js"></script>
 
 		<!-- JARVIS WIDGETS -->
-		<script src="js/smartwidgets/jarvis.widget.min.js"></script>
-		
+        <script src="Scripts/smartwidgets/jarvis.widget.min.js"></script>
+
 		<!-- EASY PIE CHARTS -->
-		<script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
-		
+        <script src="Scripts/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
 		<!-- SPARKLINES -->
-		<script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
-		
+        <script src="Scripts/plugin/sparkline/jquery.sparkline.min.js"></script>
+
 		<!-- JQUERY VALIDATE -->
-		<script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
-		
+        <script src="Scripts/plugin/jquery-validate/jquery.validate.min.js"></script>
+
 		<!-- JQUERY MASKED INPUT -->
-		<script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script>
-		
+        <script src="Scripts/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
 		<!-- JQUERY SELECT2 INPUT -->
-		<script src="js/plugin/select2/select2.min.js"></script>
+        <script src="Scripts/plugin/select2/select2.min.js"></script>
 
 		<!-- JQUERY UI + Bootstrap Slider -->
-		<script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
-		
+        <script src="Scripts/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
 		<!-- browser msie issue fix -->
-		<script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
-		
+        <script src="Scripts/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
 		<!-- SmartClick: For mobile devices -->
-		<script src="js/plugin/smartclick/smartclick.js"></script>
+        <script src="Scripts/plugin/smartclick/smartclick.js"></script>
 		
 		<!--[if IE 7]>
 			
@@ -217,7 +220,7 @@
 		<![endif]-->
 
 		<!-- MAIN APP JS FILE -->
-		<script src="js/app.js"></script>
+		<script src="Scripts/app.js"></script>
 
 		<script type="text/javascript">
 		    runAllForms();
@@ -225,7 +228,7 @@
 		    $(function () {
 		        // Validation
 		        $("#login-form").validate({
-		            // Rules for form validation
+		            //Reglas para la validación de formularios
 		            rules: {
 		                email: {
 		                    required: true,
@@ -238,22 +241,57 @@
 		                }
 		            },
 
-		            // Messages for form validation
+		            // Los mensajes para la validación de formularios
 		            messages: {
 		                email: {
-		                    required: 'Please enter your email address',
-		                    email: 'Please enter a VALID email address'
+		                    required: 'Introduzca su dirección de correo electrónico',
+		                    email: 'Por favor, introduce una dirección de correo electrónico válida'
 		                },
 		                password: {
-		                    required: 'Please enter your password'
+		                    required: 'Por favor, introduzca su contraseña'
 		                }
-		            },
 
+		            },
+		            // Ajax form submition
+		            submitHandler: function (form) {
+		                ///funcion que controla el objeto JSON devuelto por el web service
+		                $(function rpc(mensaje) {
+		                    $.ajax({
+		                        type: "POST",
+		                        contentType: "Application/Json-Rpc; charset=utf-8",
+		                        url: "http://localhost:38999/json.rpc?jsonrpc=",
+		                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "lista", "params": ["aaa"], "id": 1 }),
+		                        dataType: "json",
+		                        traditional: true,
+		                        success: function (msg) {
+		                            //alert(msg.result[0])
+		                            if (msg.result[0] == "uno") {
+		                                window.location = ("inicio.aspx");
+		                            }
+		                            else {
+		                                alert("datos incorrectos");
+		                                $("#firstname").css({ background: "#FF0000" });
+		                            }
+		                        }
+
+		                    });
+
+		                });///END
+
+		                //funcion que ejecuta la accion del formulario
+		                /* $(form).ajaxSubmit({
+                             success: function () {
+                                 $("#smart-form-register").addClass('submited');
+                             }
+                         });*/
+		                //fin que ejecuta la accion del formulario
+		            },
 		            // Do not change code below
 		            errorPlacement: function (error, element) {
 		                error.insertAfter(element.parent());
 		            }
 		        });
+		        
 		    });
 		</script>
 
