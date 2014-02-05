@@ -116,14 +116,14 @@
 									<section>
 										<label class="label">E-mail</label>
 										<label class="input"> <i class="icon-append fa fa-user"></i>
-											<input type="email" name="email">
+											<input type="email" name="email" id="email">
 											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Por favor, introduzca la dirección de correo electrónico / nombre de usuario</b></label>
 									</section>
 
 									<section>
 										<label class="label">Contraseña</label>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
-											<input type="password" name="password">
+											<input type="password" name="password" id="pass">
 											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Introduzca su contraseña</b> </label>
 										<div class="note">
 											<a href="javascript:void(0)">¿Olvidaste tu contraseña?</a>
@@ -259,13 +259,13 @@
 		                    $.ajax({
 		                        type: "POST",
 		                        contentType: "Application/Json-Rpc; charset=utf-8",
-		                        url: "http://localhost:38999/json.rpc?jsonrpc=",
-		                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "lista", "params": ["aaa"], "id": 1 }),
+		                        url: "http://localhost:1796/json.rpc?jsonrpc=",
+		                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "ValidarLogin", "params": [$("#email").val(), $("#pass").val()], "id": 1 }),
 		                        dataType: "json",
 		                        traditional: true,
 		                        success: function (msg) {
 		                            //alert(msg.result[0])
-		                            if (msg.result[0] == "uno") {
+		                            if (msg.result == "Ok") {
 		                                window.location = ("inicio.aspx");
 		                            }
 		                            else {

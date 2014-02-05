@@ -160,13 +160,12 @@
 								<fieldset>
 									<section>
 										<label class="input"> <i class="icon-append fa fa-user"></i>
-											<input type="text" name="username" placeholder="Nombre de usuario">
+											<input type="text" name="username" placeholder="Nombre de usuario" id="username">
 											<b class="tooltip tooltip-bottom-right">Se necesita para entrar en la web</b> </label>
 									</section>
-
 									<section>
 										<label class="input"> <i class="icon-append fa fa-envelope"></i>
-											<input type="email" name="email" placeholder="Dirección de correo electrónico">
+											<input type="email" name="email" id="email" placeholder="Dirección de correo electrónico">
 											<b class="tooltip tooltip-bottom-right">Se necesita para verificar su cuenta</b> </label>
 									</section>
 
@@ -184,36 +183,32 @@
 								</fieldset>
 
 								<fieldset>
+                                    <section>
+										<label class="input">
+											<input type="text" name="nom" placeholder="Tu nombre" id="nom">
+											<b class="tooltip tooltip-bottom-right">Necesitas ingresar tu nombre</b> </label>
+									</section>
 									<div class="row">
 										<section class="col col-6">
 											<label class="input">
-												<input type="text" name="firstname" placeholder="Nombres" id="firstname">
+												<input type="text" name="firstname" placeholder="Apellido paterno" id="apepat">
 											</label>
 										</section>
 										<section class="col col-6">
 											<label class="input">
-												<input type="text" name="lastname" placeholder="Apellidos">
+												<input type="text" name="lastname" placeholder="Apellido materno" id="apemat">
 											</label>
 										</section>
 									</div>
-
-									<div class="row">
-										<section class="col col-6">
-											<label class="select">
-												<select name="gender">
-													<option value="0" selected="" disabled="">Género</option>
-													<option value="1">Masculino</option>
-													<option value="2">Femenino</option>
-								
-												</select> <i></i> </label>
-										</section>
-										<section class="col col-6">
-											<label class="input"> <i class="icon-append fa fa-calendar"></i>
-												<input type="text" name="request" placeholder="Fecha de nacimiento" class="datepicker" data-dateformat='dd/mm/yy'>
-											</label>
-										</section>
-									</div>
-
+                                    <section>
+										<label class="input">
+											<input type="text" name="dni" placeholder="Tu número de DNI" id="dni">
+											 </label>
+									</section>
+                                    <section>
+										<label class="input">
+											<input type="text" name="direc" placeholder="Tu dirección" id="direc">
+											 </label>
 								</fieldset>
 								<footer>
 									<button type="submit" class="btn btn-primary" onsubmit="formulario();">
@@ -553,14 +548,18 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 		                    minlength: 3,
 		                    maxlength: 40
 		                },
-		                gender: {
-		                    required: true
+		                nom: {
+		                    required: true,
+		                    minlength: 3,
+		                    maxlength: 40
 		                },
-		                terms: {
-		                    required: true
+		                dni: {
+		                    required: true,
+		                    minlength: 8,
+		                    maxlength: 8
 		                },
-		                request: {
-		                    required: true
+		                direc: {
+		                    required: false
 		                }
 		            },
 
@@ -581,36 +580,40 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 		                    equalTo: 'Por favor, introduzca la misma contraseña que el anterior'
 		                },
 		                firstname: {
-		                    required: 'Por favor, seleccione su nombre de pila'
+		                    required: 'Por favor, ingrese su apellido paterno'
 		                },
 		                lastname: {
-		                    required: 'Por favor seleccione su apellido'
+		                    required: 'Por favor, ingrese su aptellido materno'
 		                },
-		                gender: {
-		                    required: 'Seleccione su género'
+		                nom: {
+		                    required: 'Por favor, ingrese su nombre'
 		                },
-		                terms: {
-		                    required: 'Usted debe estar de acuerdo con los Términos y Condiciones'
+		                dni: {
+		                    required: 'Por favor, ingrese su número de DNI'
 		                },
-		                request: {
-		                    required: 'Usted debe ingresar su fecha de nacimiento'
+		                direc: {
+		                    required: 'Por favor, ingrese su dirección'
 		                }
 		            },
 
 		            // Ajax form submition
 		            submitHandler: function (form) {
-                        ///funcion que controla el objeto JSON devuelto por el web service
+		                ///funcion que controla el objeto JSON devuelto por el web service
 		                $(function rpc(mensaje) {
 		                    $.ajax({
 		                        type: "POST",
 		                        contentType: "Application/Json-Rpc; charset=utf-8",
-		                        url: "http://localhost:38999/json.rpc?jsonrpc=",
-		                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "lista", "params": ["aaa"], "id": 1 }),
+		                        url: "http://localhost:1796/json.rpc?jsonrpc=",
+		                        data: JSON.stringify({
+		                            "jsonrpc": "2.0", "method": "RegistrarLogin", "params": [$("#username").val(), $("#nom").val(),
+                                        $("#apepat").val(), $("#apemat").val(), $("#email").val(), $("#direc").val(),
+                                        $("#dni").val(), $("#pass").val()], "id": 1
+		                        }),
 		                        dataType: "json",
 		                        traditional: true,
 		                        success: function (msg) {
-		                            //alert(msg.result[0])
-		                            if (msg.result[0] == "uno"){
+		                            alert(msg.result)
+		                            if (msg == "Registro OK") {
 		                                window.location = ("login.aspx");
 		                            }
 		                            else {
@@ -623,12 +626,12 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 
 		                });///END
 
-                        //funcion que ejecuta la accion del formulario
-		               /* $(form).ajaxSubmit({
-		                    success: function () {
-		                        $("#smart-form-register").addClass('submited');
-		                    }
-		                });*/
+		                //funcion que ejecuta la accion del formulario
+		                /* $(form).ajaxSubmit({
+                             success: function () {
+                                 $("#smart-form-register").addClass('submited');
+                             }
+                         });*/
 		                //fin que ejecuta la accion del formulario
 		            },
 

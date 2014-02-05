@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using Control;
 
 namespace RPCTest
 {
     public class Global : System.Web.HttpApplication
     {
-        private static HelloWorldService service = new HelloWorldService();
+        //private static HelloWorldService service = new HelloWorldService();
+        private static ControlLogin service = new ControlLogin();
 
         void Application_Start(object sender, EventArgs e)
         {
