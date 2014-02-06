@@ -84,7 +84,7 @@
 								</div>
 							</div>
 							
-							<img src="img/demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px">
+							<img src="Content/img/demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px">
 
 						</div>
 
@@ -269,7 +269,7 @@
 		                                window.location = ("inicio.aspx");
 		                            }
 		                            else {
-		                                alert("datos incorrectos");
+		                                alert("Datos incorrectos");
 		                                $("#firstname").css({ background: "#FF0000" });
 		                            }
 		                        }
