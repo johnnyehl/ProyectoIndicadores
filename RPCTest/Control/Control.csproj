@@ -61,10 +61,17 @@
       <Project>{6dee000b-6eb7-4eb7-b430-2d3b5f22c0a7}</Project>
       <Name>ADODBFactory</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{8c1b05a9-38e9-47f7-9f24-a4551ca474fc}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

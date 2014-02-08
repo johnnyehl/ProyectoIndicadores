@@ -264,13 +264,15 @@
 		                        dataType: "json",
 		                        traditional: true,
 		                        success: function (msg) {
-		                            //alert(msg.result[0])
-		                            if (msg.result == "Ok") {
+		                            //alert(msg.result[0].IDUSUARIO)
+		                            if (msg.result != null) {
+		                                alert("Bienvenido :" + msg.result[0].NOMBRE + " " + msg.result[0].APEPAT + " " + msg.result[0].APEMAT)
 		                                window.location = ("inicio.aspx");
 		                            }
 		                            else {
-		                                alert("Datos incorrectos");
+		                                alert("Usuario o Clave Incorrecta");
 		                                $("#firstname").css({ background: "#FF0000" });
+		                                
 		                            }
 		                        }
 
