@@ -34,26 +34,44 @@ namespace Control
                 }
             }
         }
-        //[JsonRpcMethod]
-        //private string RegistrarLogin(string usuario,string nom,string apepat,string apemat,string email,string direc,string dni,string pass)
-        //{
+        [JsonRpcMethod]
+        private string RegistrarLogin(string usuario, string nom, string apepat, string apemat, string email, string direc, string dni, string pass)
+        {
 
-        //    using (var bd1 = new IndicadoresEntityModel())
-        //    {
-        //        USUARIOS _usu = new USUARIOS();
-        //        _usu.NOMBRE = nom;
-        //        _usu.APEPAT = apepat;
-        //        _usu.APEMAT = apemat;
-        //        _usu.DIRECCION = direc;
-        //        _usu.DNI = dni;
-        //        _usu.EMAIL = email;
-        //        _usu.CODUSUARIO = usuario;
-        //        bd.USUARIOS.Attach(_usu);
-        //        /*log.IDDET = cc.ID;*/
-        //        bd1.SaveChanges();
-        //        return "Registro OK";
-        //    }
-            
-        //}
+            using (IndicadoresEntityModel bd = new IndicadoresEntityModel())
+            {
+                if (bd.USUARIOS.Any(u => u.EMAIL == email))
+                {
+                    return "El Email Ingresado Ya se Encuentra en uso";
+                }
+                else if (bd.USUARIOS.Any(u => u.CODUSUARIO == usuario))
+                {
+                    return "El Nombre de Usuario Ingresado Ya se Encuentra en uso";
+                }
+                //else if (bd.USUARIOS.Any(u => u.DNI == dni))
+                //{
+                //    return "El DNI Ingresado Ya se Encuentra en uso";//descomentar esta seccion si desea evitar registrar a varios usuarios con el mismo dni
+                //}
+                else
+                {
+                    IndicadoresEntityModel bd1 = new IndicadoresEntityModel();
+                    USUARIOS _usu = new USUARIOS();
+                    _usu.NOMBRE = nom;
+                    _usu.APEPAT = apepat;
+                    _usu.APEMAT = apemat;
+                    _usu.DIRECCION = direc;
+                    _usu.DNI = dni;
+                    _usu.PASSWORD = pass;
+                    _usu.EMAIL = email;
+                    _usu.CODUSUARIO = usuario;
+                    _usu.IDROL = 1;
+                    bd1.USUARIOS.Add(_usu);
+                    bd1.SaveChanges();
+                    /*log.IDDET = cc.ID;*/
+                    return "Registro OK";
+                }
+            }
+
+        }
     }
 }

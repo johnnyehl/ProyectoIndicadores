@@ -607,12 +607,12 @@ Contractology supply a wide variety of commercial legal documents, such as <a hr
 		                        data: JSON.stringify({
 		                            "jsonrpc": "2.0", "method": "RegistrarLogin", "params": [$("#username").val(), $("#nom").val(),
                                         $("#apepat").val(), $("#apemat").val(), $("#email").val(), $("#direc").val(),
-                                        $("#dni").val(), $("#pass").val()], "id": 1
+                                        $("#dni").val(), $("#password").val()], "id": 1
 		                        }),
 		                        dataType: "json",
 		                        traditional: true,
 		                        success: function (msg) {
-		                            alert(msg.result)
+		                            //alert(msg.result)
 		                            if (msg == "Registro OK") {
 		                                window.location = ("login.aspx");
 		                            }
