@@ -191,7 +191,6 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="HelloWorldService.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -263,13 +262,9 @@
     <Content Include="Register.Master" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ADODBFactory\ADODBFactory.csproj">
-      <Project>{6dee000b-6eb7-4eb7-b430-2d3b5f22c0a7}</Project>
-      <Name>ADODBFactory</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Control\Control.csproj">
-      <Project>{23cc811c-fd1d-4fee-818a-dec1337dd3ca}</Project>
-      <Name>Control</Name>
+    <ProjectReference Include="..\ServicioIndicadoresNegocio\ServicioIndicadoresNegocio.csproj">
+      <Project>{d6d02d17-515a-4b88-ba74-0d679c2e1d22}</Project>
+      <Name>ServicioIndicadoresNegocio</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

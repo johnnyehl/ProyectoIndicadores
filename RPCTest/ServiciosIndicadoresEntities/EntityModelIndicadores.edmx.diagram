@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="63081d078c41447cab29c6842d31eddd" Name="Diagrama1">
+        <EntityTypeShape EntityType="EntityModelIndicadores.APP_ACCESO" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModelIndicadores.APPS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModelIndicadores.GESTION_BASES" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModelIndicadores.GESTION_INDICADORES_DETALLE" Width="2.125" PointX="6.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModelIndicadores.ROLES" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModelIndicadores.USUARIOS" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="EntityModelIndicadores.FK_APP_ACCESO_APPS" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModelIndicadores.FK_APP_ACCESO_ROLES" ManuallyRouted="false" />
+        <AssociationConnector Association="EntityModelIndicadores.FK_USUARIOS_ROLES" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
