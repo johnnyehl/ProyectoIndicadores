@@ -213,7 +213,7 @@
 						<a href="Login.aspx"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Inbox</span><span class="badge pull-right inbox-badge">Stilo</span></a>
 					</li>
                    	<li>
-						<a href="paginas/intento.aspx"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Enlace 2</span><span class="badge bg-color-greenLight pull-right inbox-badge">Stilo</span></a>
+						<a href="Content/ajax/inline-charts.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Graficos</span><span class="badge bg-color-greenLight pull-right inbox-badge">Stilo</span></a>
 					</li>
                     <li>
 						<a href="#"><i class="fa fa-lg fa-fw fa-inbox"><em>3</em></i> <span class="menu-item-parent">Enlace 3</span><b class="collapse-sign"><em class="fa fa-expand-o"></em></b></a>
