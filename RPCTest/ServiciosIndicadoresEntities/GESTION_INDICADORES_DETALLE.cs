@@ -57,5 +57,8 @@ namespace ServiciosIndicadoresEntities
         public Nullable<decimal> VAL_13 { get; set; }
         public Nullable<decimal> VAL_14 { get; set; }
         public Nullable<decimal> VAL_15 { get; set; }
+        public string CODOBJ { get; set; }
+        public string CODI_GEST { get; set; }
+        public string ESTADO { get; set; }
     }
 }

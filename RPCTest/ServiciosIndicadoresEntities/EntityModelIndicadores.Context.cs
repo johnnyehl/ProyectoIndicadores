@@ -31,5 +31,8 @@ namespace ServiciosIndicadoresEntities
         public DbSet<GESTION_INDICADORES_DETALLE> GESTION_INDICADORES_DETALLE { get; set; }
         public DbSet<ROLES> ROLES { get; set; }
         public DbSet<USUARIOS> USUARIOS { get; set; }
+        public DbSet<GESTION_CONF_VARIABLES> GESTION_CONF_VARIABLES { get; set; }
+        public DbSet<GESTION_VARIABLES> GESTION_VARIABLES { get; set; }
+        public DbSet<GESTION_INDICADORES_RESUMEN> GESTION_INDICADORES_RESUMEN { get; set; }
     }
 }

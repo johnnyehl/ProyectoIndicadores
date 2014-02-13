@@ -73,7 +73,16 @@
     <Compile Include="GESTION_BASES.cs">
       <DependentUpon>EntityModelIndicadores.tt</DependentUpon>
     </Compile>
+    <Compile Include="GESTION_CONF_VARIABLES.cs">
+      <DependentUpon>EntityModelIndicadores.tt</DependentUpon>
+    </Compile>
     <Compile Include="GESTION_INDICADORES_DETALLE.cs">
+      <DependentUpon>EntityModelIndicadores.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GESTION_INDICADORES_RESUMEN.cs">
+      <DependentUpon>EntityModelIndicadores.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GESTION_VARIABLES.cs">
       <DependentUpon>EntityModelIndicadores.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

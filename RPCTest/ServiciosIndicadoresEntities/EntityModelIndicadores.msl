@@ -1,0 +1,151 @@
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EntityModelIndicadoresStoreContainer" CdmEntityContainer="IndicadoresEntities">
+    <EntitySetMapping Name="APP_ACCESO">
+      <EntityTypeMapping TypeName="EntityModelIndicadores.APP_ACCESO">
+        <MappingFragment StoreEntitySet="APP_ACCESO">
+          <ScalarProperty Name="IDACCESOAPP" ColumnName="IDACCESOAPP" />
+          <ScalarProperty Name="IDAPP" ColumnName="IDAPP" />
+          <ScalarProperty Name="IDROL" ColumnName="IDROL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="APPS">
+      <EntityTypeMapping TypeName="EntityModelIndicadores.APPS">
+        <MappingFragment StoreEntitySet="APPS">
+          <ScalarProperty Name="IDAPP" ColumnName="IDAPP" />
+          <ScalarProperty Name="CODAPP" ColumnName="CODAPP" />
+          <ScalarProperty Name="NOMAPP" ColumnName="NOMAPP" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GESTION_BASES">
+      <EntityTypeMapping TypeName="EntityModelIndicadores.GESTION_BASES">
+        <MappingFragment StoreEntitySet="GESTION_BASES">
+          <ScalarProperty Name="LOGUEADOS" ColumnName="LOGUEADOS" />
+          <ScalarProperty Name="CONTPOT" ColumnName="CONTPOT" />
+          <ScalarProperty Name="IDGESTION" ColumnName="IDGESTION" />
+          <ScalarProperty Name="GESTION" ColumnName="GESTION" />
+          <ScalarProperty Name="SUBGESTION" ColumnName="SUBGESTION" />
+          <ScalarProperty Name="CODI_GEST" ColumnName="CODI_GEST" />
+          <ScalarProperty Name="ID_ABONADO" ColumnName="ID_ABONADO" />
+          <ScalarProperty Name="FEC_TRAMITE" ColumnName="FEC_TRAMITE" />
+          <ScalarProperty Name="FEC_BAJA" ColumnName="FEC_BAJA" />
+          <ScalarProperty Name="LLAMADAS_DIA" ColumnName="LLAMADAS_DIA" />
+          <ScalarProperty Name="LLAMADAS_ANT" ColumnName="LLAMADAS_ANT" />
+          <ScalarProperty Name="LLAMADAS_TOTAL" ColumnName="LLAMADAS_TOTAL" />
+          <ScalarProperty Name="CEF" ColumnName="CEF" />
+          <ScalarProperty Name="CNE" ColumnName="CNE" />
+          <ScalarProperty Name="NOC" ColumnName="NOC" />
+          <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+          <ScalarProperty Name="VENTAS" ColumnName="VENTAS" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GESTION_INDICADORES_DETALLE">
+      <EntityTypeMapping TypeName="EntityModelIndicadores.GESTION_INDICADORES_DETALLE">
+        <MappingFragment StoreEntitySet="GESTION_INDICADORES_DETALLE">
+          <ScalarProperty Name="VAL_15" ColumnName="VAL_15" />
+          <ScalarProperty Name="VAL_14" ColumnName="VAL_14" />
+          <ScalarProperty Name="VAL_13" ColumnName="VAL_13" />
+          <ScalarProperty Name="VAL_12" ColumnName="VAL_12" />
+          <ScalarProperty Name="VAL_11" ColumnName="VAL_11" />
+          <ScalarProperty Name="VAL_10" ColumnName="VAL_10" />
+          <ScalarProperty Name="VAL_09" ColumnName="VAL_09" />
+          <ScalarProperty Name="VAL_08" ColumnName="VAL_08" />
+          <ScalarProperty Name="VAL_07" ColumnName="VAL_07" />
+          <ScalarProperty Name="VAL_06" ColumnName="VAL_06" />
+          <ScalarProperty Name="VAL_05" ColumnName="VAL_05" />
+          <ScalarProperty Name="VAL_04" ColumnName="VAL_04" />
+          <ScalarProperty Name="VAL_03" ColumnName="VAL_03" />
+          <ScalarProperty Name="VAL_02" ColumnName="VAL_02" />
+          <ScalarProperty Name="VAL_01" ColumnName="VAL_01" />
+          <ScalarProperty Name="TXT_15" ColumnName="TXT_15" />
+          <ScalarProperty Name="TXT_14" ColumnName="TXT_14" />
+          <ScalarProperty Name="TXT_13" ColumnName="TXT_13" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GESTION" ColumnName="GESTION" />
+          <ScalarProperty Name="SUBGESTION" ColumnName="SUBGESTION" />
+          <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+          <ScalarProperty Name="ANHO" ColumnName="ANHO" />
+          <ScalarProperty Name="MES" ColumnName="MES" />
+          <ScalarProperty Name="DIA" ColumnName="DIA" />
+          <ScalarProperty Name="HORA" ColumnName="HORA" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="TXT_01" ColumnName="TXT_01" />
+          <ScalarProperty Name="TXT_02" ColumnName="TXT_02" />
+          <ScalarProperty Name="TXT_03" ColumnName="TXT_03" />
+          <ScalarProperty Name="TXT_04" ColumnName="TXT_04" />
+          <ScalarProperty Name="TXT_05" ColumnName="TXT_05" />
+          <ScalarProperty Name="TXT_06" ColumnName="TXT_06" />
+          <ScalarProperty Name="TXT_07" ColumnName="TXT_07" />
+          <ScalarProperty Name="TXT_08" ColumnName="TXT_08" />
+          <ScalarProperty Name="TXT_09" ColumnName="TXT_09" />
+          <ScalarProperty Name="TXT_10" ColumnName="TXT_10" />
+          <ScalarProperty Name="TXT_11" ColumnName="TXT_11" />
+          <ScalarProperty Name="TXT_12" ColumnName="TXT_12" />
+          <ScalarProperty Name="IDORIGEN" ColumnName="IDORIGEN" />
+          <ScalarProperty Name="DESCRIPCION_ORIGEN" ColumnName="DESCRIPCION_ORIGEN" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="TIEMPO" ColumnName="TIEMPO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLES">
+      <EntityTypeMapping TypeName="EntityModelIndicadores.ROLES">
+        <MappingFragment StoreEntitySet="ROLES">
+          <ScalarProperty Name="IDROL" ColumnName="IDROL" />
+          <ScalarProperty Name="CODROL" ColumnName="CODROL" />
+          <ScalarProperty Name="NOMROL" ColumnName="NOMROL" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIOS">
+      <EntityTypeMapping TypeName="EntityModelIndicadores.USUARIOS">
+        <MappingFragment StoreEntitySet="USUARIOS">
+          <ScalarProperty Name="IDUSUARIO" ColumnName="IDUSUARIO" />
+          <ScalarProperty Name="CODUSUARIO" ColumnName="CODUSUARIO" />
+          <ScalarProperty Name="APEPAT" ColumnName="APEPAT" />
+          <ScalarProperty Name="APEMAT" ColumnName="APEMAT" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="IDROL" ColumnName="IDROL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GESTION_CONF_VARIABLES">
+      <EntityTypeMapping TypeName="EntityModelIndicadores.GESTION_CONF_VARIABLES">
+        <MappingFragment StoreEntitySet="GESTION_CONF_VARIABLES">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="UNIDAD" ColumnName="UNIDAD" />
+          <ScalarProperty Name="FORMULA" ColumnName="FORMULA" />
+          <ScalarProperty Name="CALC" ColumnName="CALC" />
+          <ScalarProperty Name="NOMVAR" ColumnName="NOMVAR" />
+          <ScalarProperty Name="CODVAR" ColumnName="CODVAR" />
+          <ScalarProperty Name="IDVARIABLE" ColumnName="IDVARIABLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GESTION_VARIABLES">
+      <EntityTypeMapping TypeName="EntityModelIndicadores.GESTION_VARIABLES">
+        <MappingFragment StoreEntitySet="GESTION_VARIABLES">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="UNIDAD" ColumnName="UNIDAD" />
+          <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+          <ScalarProperty Name="NOMVAR" ColumnName="NOMVAR" />
+          <ScalarProperty Name="CODVAR" ColumnName="CODVAR" />
+          <ScalarProperty Name="SUBGESTION" ColumnName="SUBGESTION" />
+          <ScalarProperty Name="GESTION" ColumnName="GESTION" />
+          <ScalarProperty Name="CODI_GEST" ColumnName="CODI_GEST" />
+          <ScalarProperty Name="CODOBJ" ColumnName="CODOBJ" />
+          <ScalarProperty Name="IDVARIABLE" ColumnName="IDVARIABLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

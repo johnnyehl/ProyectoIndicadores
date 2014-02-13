@@ -14,6 +14,9 @@
         <AssociationConnector Association="EntityModelIndicadores.FK_APP_ACCESO_APPS" ManuallyRouted="false" />
         <AssociationConnector Association="EntityModelIndicadores.FK_APP_ACCESO_ROLES" ManuallyRouted="false" />
         <AssociationConnector Association="EntityModelIndicadores.FK_USUARIOS_ROLES" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EntityModelIndicadores.GESTION_CONF_VARIABLES" Width="1.5" PointX="4.5" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModelIndicadores.GESTION_VARIABLES" Width="1.5" PointX="6.3711366049810954" PointY="16.765605114756898" IsExpanded="true" />
+        <EntityTypeShape EntityType="EntityModelIndicadores.GESTION_INDICADORES_RESUMEN" Width="1.5" PointX="3.4062571690446961" PointY="31.4147806313889" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

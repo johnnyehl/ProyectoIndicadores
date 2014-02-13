@@ -1,0 +1,205 @@
+<Schema Namespace="EntityModelIndicadores" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="IndicadoresEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="APP_ACCESO" EntityType="EntityModelIndicadores.APP_ACCESO" />
+    <EntitySet Name="APPS" EntityType="EntityModelIndicadores.APPS" />
+    <EntitySet Name="GESTION_BASES" EntityType="EntityModelIndicadores.GESTION_BASES" />
+    <EntitySet Name="GESTION_INDICADORES_DETALLE" EntityType="EntityModelIndicadores.GESTION_INDICADORES_DETALLE" />
+    <EntitySet Name="ROLES" EntityType="EntityModelIndicadores.ROLES" />
+    <EntitySet Name="USUARIOS" EntityType="EntityModelIndicadores.USUARIOS" />
+    <AssociationSet Name="FK_APP_ACCESO_APPS" Association="EntityModelIndicadores.FK_APP_ACCESO_APPS">
+      <End Role="APPS" EntitySet="APPS" />
+      <End Role="APP_ACCESO" EntitySet="APP_ACCESO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_APP_ACCESO_ROLES" Association="EntityModelIndicadores.FK_APP_ACCESO_ROLES">
+      <End Role="ROLES" EntitySet="ROLES" />
+      <End Role="APP_ACCESO" EntitySet="APP_ACCESO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIOS_ROLES" Association="EntityModelIndicadores.FK_USUARIOS_ROLES">
+      <End Role="ROLES" EntitySet="ROLES" />
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+    </AssociationSet>
+    <EntitySet Name="GESTION_CONF_VARIABLES" EntityType="EntityModelIndicadores.GESTION_CONF_VARIABLES" />
+    <EntitySet Name="GESTION_VARIABLES" EntityType="EntityModelIndicadores.GESTION_VARIABLES" />
+  </EntityContainer>
+  <EntityType Name="APP_ACCESO">
+    <Key>
+      <PropertyRef Name="IDACCESOAPP" />
+    </Key>
+    <Property Name="IDACCESOAPP" Type="Decimal" Nullable="false" Precision="18" Scale="0" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="IDAPP" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="IDROL" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <NavigationProperty Name="APPS" Relationship="EntityModelIndicadores.FK_APP_ACCESO_APPS" FromRole="APP_ACCESO" ToRole="APPS" />
+    <NavigationProperty Name="ROLES" Relationship="EntityModelIndicadores.FK_APP_ACCESO_ROLES" FromRole="APP_ACCESO" ToRole="ROLES" />
+  </EntityType>
+  <EntityType Name="APPS">
+    <Key>
+      <PropertyRef Name="IDAPP" />
+    </Key>
+    <Property Name="IDAPP" Type="Decimal" Nullable="false" Precision="18" Scale="0" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CODAPP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="NOMAPP" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ESTADO" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="APP_ACCESO" Relationship="EntityModelIndicadores.FK_APP_ACCESO_APPS" FromRole="APPS" ToRole="APP_ACCESO" />
+  </EntityType>
+  <EntityType Name="GESTION_BASES">
+    <Key>
+      <PropertyRef Name="IDGESTION" />
+    </Key>
+    <Property Name="IDGESTION" Type="Decimal" Nullable="false" Precision="18" Scale="0" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="GESTION" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SUBGESTION" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CODI_GEST" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
+    <Property Name="ID_ABONADO" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="FEC_TRAMITE" Type="DateTime" Precision="0" />
+    <Property Name="FEC_BAJA" Type="DateTime" Precision="0" />
+    <Property Name="LLAMADAS_DIA" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="LLAMADAS_ANT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="LLAMADAS_TOTAL" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="CEF" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="CNE" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NOC" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TIPO" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="VENTAS" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ESTADO" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Type="Decimal" Name="CONTPOT" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="LOGUEADOS" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="GESTION_INDICADORES_DETALLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="GESTION" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SUBGESTION" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TIPO" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="ANHO" Type="Int32" />
+    <Property Name="MES" Type="Int32" />
+    <Property Name="DIA" Type="Int32" />
+    <Property Name="HORA" Type="Int32" />
+    <Property Name="FECHA" Type="DateTime" Precision="0" />
+    <Property Name="TXT_01" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TXT_02" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TXT_03" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TXT_04" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TXT_05" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TXT_06" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TXT_07" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TXT_08" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TXT_09" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TXT_10" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TXT_11" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TXT_12" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="IDORIGEN" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DESCRIPCION_ORIGEN" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="CANTIDAD" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TIEMPO" Type="Decimal" Precision="18" Scale="2" />
+    <Property Type="String" Name="TXT_13" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TXT_14" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TXT_15" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="VAL_01" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_02" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_03" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_04" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_05" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_06" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_07" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_08" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_09" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_10" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_11" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_12" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_13" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_14" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="VAL_15" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ROLES">
+    <Key>
+      <PropertyRef Name="IDROL" />
+    </Key>
+    <Property Name="IDROL" Type="Decimal" Nullable="false" Precision="18" Scale="0" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CODROL" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="NOMROL" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ESTADO" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="APP_ACCESO" Relationship="EntityModelIndicadores.FK_APP_ACCESO_ROLES" FromRole="ROLES" ToRole="APP_ACCESO" />
+    <NavigationProperty Name="USUARIOS" Relationship="EntityModelIndicadores.FK_USUARIOS_ROLES" FromRole="ROLES" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="IDUSUARIO" />
+    </Key>
+    <Property Name="IDUSUARIO" Type="Decimal" Nullable="false" Precision="18" Scale="0" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="CODUSUARIO" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="APEPAT" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="APEMAT" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DIRECCION" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="DNI" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="IDROL" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="ROLES" Relationship="EntityModelIndicadores.FK_USUARIOS_ROLES" FromRole="USUARIOS" ToRole="ROLES" />
+  </EntityType>
+  <Association Name="FK_APP_ACCESO_APPS">
+    <End Role="APPS" Type="EntityModelIndicadores.APPS" Multiplicity="1" />
+    <End Role="APP_ACCESO" Type="EntityModelIndicadores.APP_ACCESO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="APPS">
+        <PropertyRef Name="IDAPP" />
+      </Principal>
+      <Dependent Role="APP_ACCESO">
+        <PropertyRef Name="IDAPP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_APP_ACCESO_ROLES">
+    <End Role="ROLES" Type="EntityModelIndicadores.ROLES" Multiplicity="1" />
+    <End Role="APP_ACCESO" Type="EntityModelIndicadores.APP_ACCESO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLES">
+        <PropertyRef Name="IDROL" />
+      </Principal>
+      <Dependent Role="APP_ACCESO">
+        <PropertyRef Name="IDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIOS_ROLES">
+    <End Role="ROLES" Type="EntityModelIndicadores.ROLES" Multiplicity="0..1" />
+    <End Role="USUARIOS" Type="EntityModelIndicadores.USUARIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLES">
+        <PropertyRef Name="IDROL" />
+      </Principal>
+      <Dependent Role="USUARIOS">
+        <PropertyRef Name="IDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GESTION_CONF_VARIABLES">
+    <Key>
+      <PropertyRef Name="IDVARIABLE" />
+    </Key>
+    <Property Type="Decimal" Name="IDVARIABLE" Nullable="false" Precision="18" Scale="0" p1:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CODVAR" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NOMVAR" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CALC" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="FORMULA" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UNIDAD" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ESTADO" MaxLength="1" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GESTION_VARIABLES">
+    <Key>
+      <PropertyRef Name="IDVARIABLE" />
+    </Key>
+    <Property Type="Decimal" Name="IDVARIABLE" Nullable="false" Precision="18" Scale="0" p1:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CODOBJ" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CODI_GEST" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="GESTION" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SUBGESTION" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CODVAR" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NOMVAR" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="VALOR" Precision="18" Scale="2" />
+    <Property Type="String" Name="UNIDAD" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ESTADO" MaxLength="3" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

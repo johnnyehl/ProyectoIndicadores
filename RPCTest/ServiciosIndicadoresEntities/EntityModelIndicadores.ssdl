@@ -1,0 +1,215 @@
+<Schema Namespace="EntityModelIndicadores.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="EntityModelIndicadoresStoreContainer">
+    <EntitySet Name="APP_ACCESO" EntityType="EntityModelIndicadores.Store.APP_ACCESO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="APPS" EntityType="EntityModelIndicadores.Store.APPS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GESTION_BASES" EntityType="EntityModelIndicadores.Store.GESTION_BASES" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GESTION_CONF_VARIABLES" EntityType="EntityModelIndicadores.Store.GESTION_CONF_VARIABLES" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GESTION_INDICADORES_DETALLE" EntityType="EntityModelIndicadores.Store.GESTION_INDICADORES_DETALLE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GESTION_VARIABLES" EntityType="EntityModelIndicadores.Store.GESTION_VARIABLES" store:Type="Tables" store:Schema="dbo" store:Name="GESTION_VARIABLES">
+      <DefiningQuery>SELECT 
+      [GESTION_VARIABLES].[IDVARIABLE] AS [IDVARIABLE], 
+      [GESTION_VARIABLES].[CODOBJ] AS [CODOBJ], 
+      [GESTION_VARIABLES].[CODI_GEST] AS [CODI_GEST], 
+      [GESTION_VARIABLES].[GESTION] AS [GESTION], 
+      [GESTION_VARIABLES].[SUBGESTION] AS [SUBGESTION], 
+      [GESTION_VARIABLES].[CODVAR] AS [CODVAR], 
+      [GESTION_VARIABLES].[NOMVAR] AS [NOMVAR], 
+      [GESTION_VARIABLES].[VALOR] AS [VALOR], 
+      [GESTION_VARIABLES].[UNIDAD] AS [UNIDAD], 
+      [GESTION_VARIABLES].[ESTADO] AS [ESTADO]
+      FROM [dbo].[GESTION_VARIABLES] AS [GESTION_VARIABLES]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ROLES" EntityType="EntityModelIndicadores.Store.ROLES" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="USUARIOS" EntityType="EntityModelIndicadores.Store.USUARIOS" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_APP_ACCESO_APPS" Association="EntityModelIndicadores.Store.FK_APP_ACCESO_APPS">
+      <End Role="APPS" EntitySet="APPS" />
+      <End Role="APP_ACCESO" EntitySet="APP_ACCESO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_APP_ACCESO_ROLES" Association="EntityModelIndicadores.Store.FK_APP_ACCESO_ROLES">
+      <End Role="ROLES" EntitySet="ROLES" />
+      <End Role="APP_ACCESO" EntitySet="APP_ACCESO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIOS_ROLES" Association="EntityModelIndicadores.Store.FK_USUARIOS_ROLES">
+      <End Role="ROLES" EntitySet="ROLES" />
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="APP_ACCESO">
+    <Key>
+      <PropertyRef Name="IDACCESOAPP" />
+    </Key>
+    <Property Name="IDACCESOAPP" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IDAPP" Type="numeric" Nullable="false" />
+    <Property Name="IDROL" Type="numeric" Nullable="false" />
+  </EntityType>
+  <EntityType Name="APPS">
+    <Key>
+      <PropertyRef Name="IDAPP" />
+    </Key>
+    <Property Name="IDAPP" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CODAPP" Type="nvarchar" MaxLength="20" />
+    <Property Name="NOMAPP" Type="nvarchar" MaxLength="50" />
+    <Property Name="ESTADO" Type="nvarchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="GESTION_BASES">
+    <Key>
+      <PropertyRef Name="IDGESTION" />
+    </Key>
+    <Property Name="IDGESTION" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="GESTION" Type="nvarchar" MaxLength="50" />
+    <Property Name="SUBGESTION" Type="nvarchar" MaxLength="50" />
+    <Property Name="CODI_GEST" Type="nvarchar" MaxLength="6" />
+    <Property Name="ID_ABONADO" Type="nvarchar" MaxLength="50" />
+    <Property Name="FEC_TRAMITE" Type="date" />
+    <Property Name="FEC_BAJA" Type="date" />
+    <Property Name="LLAMADAS_DIA" Type="numeric" />
+    <Property Name="LLAMADAS_ANT" Type="numeric" />
+    <Property Name="LLAMADAS_TOTAL" Type="numeric" />
+    <Property Name="CEF" Type="numeric" />
+    <Property Name="CNE" Type="numeric" />
+    <Property Name="NOC" Type="numeric" />
+    <Property Name="CONTPOT" Type="numeric" />
+    <Property Name="TIPO" Type="nvarchar" MaxLength="100" />
+    <Property Name="VENTAS" Type="numeric" />
+    <Property Name="LOGUEADOS" Type="numeric" />
+    <Property Name="ESTADO" Type="nvarchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="GESTION_CONF_VARIABLES">
+    <Key>
+      <PropertyRef Name="IDVARIABLE" />
+    </Key>
+    <Property Name="IDVARIABLE" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CODVAR" Type="nvarchar" MaxLength="50" />
+    <Property Name="NOMVAR" Type="nvarchar" MaxLength="50" />
+    <Property Name="CALC" Type="nvarchar" MaxLength="1" />
+    <Property Name="FORMULA" Type="nvarchar" MaxLength="150" />
+    <Property Name="UNIDAD" Type="nvarchar" MaxLength="50" />
+    <Property Name="ESTADO" Type="nvarchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="GESTION_INDICADORES_DETALLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="GESTION" Type="nvarchar" MaxLength="50" />
+    <Property Name="SUBGESTION" Type="nvarchar" MaxLength="50" />
+    <Property Name="TIPO" Type="nvarchar" MaxLength="20" />
+    <Property Name="ANHO" Type="int" />
+    <Property Name="MES" Type="int" />
+    <Property Name="DIA" Type="int" />
+    <Property Name="HORA" Type="int" />
+    <Property Name="FECHA" Type="date" />
+    <Property Name="TXT_01" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_02" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_03" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_04" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_05" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_06" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_07" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_08" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_09" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_10" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_11" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_12" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_13" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_14" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT_15" Type="nvarchar" MaxLength="50" />
+    <Property Name="VAL_01" Type="numeric" Scale="2" />
+    <Property Name="VAL_02" Type="numeric" Scale="2" />
+    <Property Name="VAL_03" Type="numeric" Scale="2" />
+    <Property Name="VAL_04" Type="numeric" Scale="2" />
+    <Property Name="VAL_05" Type="numeric" Scale="2" />
+    <Property Name="VAL_06" Type="numeric" Scale="2" />
+    <Property Name="VAL_07" Type="numeric" Scale="2" />
+    <Property Name="VAL_08" Type="numeric" Scale="2" />
+    <Property Name="VAL_09" Type="numeric" Scale="2" />
+    <Property Name="VAL_10" Type="numeric" Scale="2" />
+    <Property Name="VAL_11" Type="numeric" Scale="2" />
+    <Property Name="VAL_12" Type="numeric" Scale="2" />
+    <Property Name="VAL_13" Type="numeric" Scale="2" />
+    <Property Name="VAL_14" Type="numeric" Scale="2" />
+    <Property Name="VAL_15" Type="numeric" Scale="2" />
+    <Property Name="IDORIGEN" Type="numeric" />
+    <Property Name="DESCRIPCION_ORIGEN" Type="nvarchar" MaxLength="250" />
+    <Property Name="CANTIDAD" Type="numeric" Scale="2" />
+    <Property Name="TIEMPO" Type="numeric" Scale="2" />
+  </EntityType>
+  <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'BDINDICADORES.dbo.GESTION_VARIABLES' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      -->
+  <EntityType Name="GESTION_VARIABLES">
+    <Key>
+      <PropertyRef Name="IDVARIABLE" />
+    </Key>
+    <Property Name="IDVARIABLE" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CODOBJ" Type="nvarchar" MaxLength="20" />
+    <Property Name="CODI_GEST" Type="nvarchar" MaxLength="50" />
+    <Property Name="GESTION" Type="nvarchar" MaxLength="50" />
+    <Property Name="SUBGESTION" Type="nvarchar" MaxLength="50" />
+    <Property Name="CODVAR" Type="nvarchar" MaxLength="50" />
+    <Property Name="NOMVAR" Type="nvarchar" MaxLength="50" />
+    <Property Name="VALOR" Type="numeric" Scale="2" />
+    <Property Name="UNIDAD" Type="nvarchar" MaxLength="50" />
+    <Property Name="ESTADO" Type="nvarchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="ROLES">
+    <Key>
+      <PropertyRef Name="IDROL" />
+    </Key>
+    <Property Name="IDROL" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CODROL" Type="nvarchar" MaxLength="20" />
+    <Property Name="NOMROL" Type="nvarchar" MaxLength="50" />
+    <Property Name="ESTADO" Type="nvarchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="IDUSUARIO" />
+    </Key>
+    <Property Name="IDUSUARIO" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CODUSUARIO" Type="nvarchar" MaxLength="50" />
+    <Property Name="APEPAT" Type="nvarchar" MaxLength="50" />
+    <Property Name="APEMAT" Type="nvarchar" MaxLength="50" />
+    <Property Name="NOMBRE" Type="nvarchar" MaxLength="100" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+    <Property Name="DIRECCION" Type="nvarchar" MaxLength="150" />
+    <Property Name="DNI" Type="nvarchar" MaxLength="50" />
+    <Property Name="PASSWORD" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDROL" Type="numeric" />
+  </EntityType>
+  <Association Name="FK_APP_ACCESO_APPS">
+    <End Role="APPS" Type="EntityModelIndicadores.Store.APPS" Multiplicity="1" />
+    <End Role="APP_ACCESO" Type="EntityModelIndicadores.Store.APP_ACCESO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="APPS">
+        <PropertyRef Name="IDAPP" />
+      </Principal>
+      <Dependent Role="APP_ACCESO">
+        <PropertyRef Name="IDAPP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_APP_ACCESO_ROLES">
+    <End Role="ROLES" Type="EntityModelIndicadores.Store.ROLES" Multiplicity="1" />
+    <End Role="APP_ACCESO" Type="EntityModelIndicadores.Store.APP_ACCESO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLES">
+        <PropertyRef Name="IDROL" />
+      </Principal>
+      <Dependent Role="APP_ACCESO">
+        <PropertyRef Name="IDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIOS_ROLES">
+    <End Role="ROLES" Type="EntityModelIndicadores.Store.ROLES" Multiplicity="0..1" />
+    <End Role="USUARIOS" Type="EntityModelIndicadores.Store.USUARIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLES">
+        <PropertyRef Name="IDROL" />
+      </Principal>
+      <Dependent Role="USUARIOS">
+        <PropertyRef Name="IDROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
