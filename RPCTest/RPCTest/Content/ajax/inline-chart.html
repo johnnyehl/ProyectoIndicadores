@@ -1,0 +1,72 @@
+
+<!-- <html> -->
+ <!-- <head> -->
+   <!-- <meta charset="utf-8">  -->
+   <!--<title>Tabla</title>-->
+   <link href="Content/css/kendo/kendo.common.min.css" rel="stylesheet" />
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+   <link href="Content/css/bootstrap.min.css" rel="stylesheet" />
+   <link href="Content/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!--</head>-->
+ <!--<body>-->
+
+
+     <div class="container">
+
+ 
+    <div class="col-sm-6">
+     <div class="panel panel-default">
+         <div class="panel-heading"></div>
+         <div class="panel-body">
+             <table class="table table-hover table-striped table-condensed " id="Tabla1">
+                 <thead>
+                     <tr>
+                         <th>DATOS</th>
+                         <th>BBDD </th>
+                         <th class="text-align-center">LIMA  </th>
+                         <th class="text-align-center">PROVINCIA</th>
+                     </tr>
+                 </thead>
+                 <tbody >
+                 </tbody>
+             </table>
+         </div>
+     </div>
+    </div>
+    </div>
+       <script>
+           $(function rpc(mensaje) {
+               $.ajax({
+                   type: "POST",
+                   contentType: "Application/Json-Rpc",
+                   url: "http://localhost:1796/json.rpc?jsonrpc=",
+                   data: JSON.stringify({
+                       "jsonrpc": "2.0",
+                       "method": "GestionIndicadoresResumen", "params": ["ALTASHD",2014,2], "id": 1
+                   }),
+                   dataType: "json",
+                   traditional: true,
+                   success: function (msg) {
+                       $("#Tabla1 td").remove();
+                      // alert(msg.result);
+                       for (var i = 0; i < msg.result.length ; i++) {
+                           var tr="<tr>";
+                          var td1= "<td>" + msg.result[i].DESCRIPCION +  "</td>";
+                           var td2= "<td>" + msg.result[i].VALOR + "</td>";
+                           var td3= "<td>" + msg.result[i].LIMA + "</td>";
+                           var td4= "<td>" + msg.result[i].PROVINCIA + "</td>";
+                           var tr2 = "</tr>";
+                           $("#Tabla1").append(tr+td1+td2+td3+td4+tr2);
+                       }
+                       
+                   }
+               });
+           });
+      </script>
+ 
+
+	<script scr="Scripts/bootstrap/bootstrap.min.js"></script>
+    <script scr="Scripts/libs/jquery-2.0.2.min.js"></script>
+
+ <!--</body> -->
+<!-- </html> -->
