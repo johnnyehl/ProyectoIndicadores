@@ -229,16 +229,31 @@
 						<a href="paginas/Dashboard.html" title="Titulo sobrepuesto"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
 					</li>
 					<li>
-						<a href="Login.aspx"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Inbox</span><span class="badge pull-right inbox-badge">Stilo</span></a>
+						<a href="paginas/Dashboard33.html"><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Reporte Diario</span><span class="badge pull-right inbox-badge">1</span></a>
+					</li>
+					<li>
+						<a href="paginas/Dashboard22.html"><i class="fa fa-lg fa-fw fa-list"></i> <span class="menu-item-parent">Avance Diario</span></a>
+					</li>
+					<li>
+						<a href="paginas/Dashboard11.html"><i class="fa fa-lg fa-fw fa-list-alt"></i> <span class="menu-item-parent">Analisis Contactabilidad</span></a>
+					</li>
+					<li>
+						<a href="paginas/Dashboard5.html"><i class="fa fa-lg fa-fw fa-th"></i> <span class="menu-item-parent">Temáticos</span></a>
+					</li>
+					<li>
+						<a href="paginas/Dashboard3.html"><i class="fa fa-lg fa-fw fa-th-list"></i> <span class="menu-item-parent">Rendimiento Asesor Diario</span></a>
+					</li>
+					<li>
+						<a href="paginas/Dashboard4.html"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">Reporte Diario Temático</span></a>
 					</li>
                    	<li>
-						<a href="Content/ajax/inline-charts.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Graficos</span><span class="badge bg-color-greenLight pull-right inbox-badge">Stilo</span></a>
+						<a href="Content/ajax/inline-charts.html"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Graficos</span><span class="badge bg-color-greenLight pull-right inbox-badge">Stilo</span></a>
 					</li>
                     <li>
-						<a href="#"><i class="fa fa-lg fa-fw fa-inbox"><em>3</em></i> <span class="menu-item-parent">Enlace 3</span><b class="collapse-sign"><em class="fa fa-expand-o"></em></b></a>
+						<a href="#"><i class="fa fa-lg fa-fw fa-smile-o"><em>3</em></i> <span class="menu-item-parent">Pruebas</span><b class="collapse-sign"><em class="fa fa-expand-o"></em></b></a>
                         <ul>
 							<li>
-								<a href="ajax/flot.html">SubEnlace1</a>
+								<a href="paginas/checkbox.html">Checkbox</a>
 							</li>
 							<li>
 								<a href="ajax/inline-charts.html">SubEnlace2</a>
@@ -270,8 +285,19 @@
 
 				<!-- Se puede agregar mas botones al liston para mejorar la usabilidad
 
-				Ejemplos mas que nada de estilos y bootones:
-
+				Ejemplos mas que nada de estilos y bootones:-->
+                <span class="ribbon-button-alignment pull-right">
+                <label class="checkbox-inline">
+  <input type="checkbox" id="checkboxEnLinea1" value="opcion_1"><font color="white">Cuadro 1</font>
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="checkboxEnLinea2" value="opcion_2"><font color="white">Cuadro 2</font>
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="checkboxEnLinea3" value="opcion_3"><font color="white">Cuadro 3</font>
+</label> </span>
+                
+<!--
 				<span class="ribbon-button-alignment pull-right">
 				<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
 				<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
@@ -380,8 +406,8 @@
 
 		<![endif]-->
 
-		<!-- Demo purpose only -->
-        <script src="Scripts/demo.js"></script>
+		<!-- Demo purpose only 
+        <script src="Scripts/demo.js"></script>-->
 
 		<!-- MAIN APP JS FILE -->
         <script src="Scripts/app.js"></script>
