@@ -1,0 +1,417 @@
+﻿    <link href="Content/css/kendo/kendo.common.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link href="Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/graficos/kendo.css" rel="stylesheet" />
+    <link href="Content/css/kendo/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="Content/css/kendo/kendo.dataviz.silver.min.css" rel="stylesheet" />
+    <link href="Content/css/kendo/kendo.rtl.min.css" rel="stylesheet" />
+    <link href="Content/css/kendo/kendo.silver.min.css" rel="stylesheet" />
+    <!-- SCRIPT GRAFICO BARRA -->
+    <script src="Scripts/graficos/globalize.min.js"></script>
+    <script src="Scripts/graficos/knockout-3.0.0.js"></script>
+    <script src="Scripts/graficos/dx.chartjs.js"></script>
+    <script src="Scripts/libs/Chart.js"></script>
+    <script src="Scripts/libs/Chart.min.js"></script>
+     <!--Pestañas inicio...-->   
+        <div id="forecast">
+            <div id="tabstrip" class="filtering-tabs">
+                    <ul>
+                        <li class="k-state-active">
+                            BASE
+                        </li>
+                        <li>
+                            MARCACIONES
+                        </li>                        
+                    </ul>
+                    <!--Primer TAB-->
+                    <div>
+                            <div id="example" class="k-content">
+                                    <div class="demo-section">
+                                        <p>
+                                            <label for="products">Tipo de Envio:</label><input id="sec" style="width: 300px" />                                           
+                                        </p>
+                                        <!--<p>
+                                            <label for="orders">Tipo de Lugar:</label><input id="ter" disabled="disabled" style="width: 300px" />
+                                        </p>
+                                            -->
+                                        <button class="k-button" id="get">Ver Escala</button>
+                                    </div>
+                            </div>
+                   <div id="chartContainer21" style="max-width:700px;height: 800px;"></div>
+	                    <script>
+	                        //TRATAMIENTO DE OBJETO JSON
+	                        ///funcion que controla el objeto JSON devuelto por el web service
+	                        $(function rpc(mensaje) {
+	                            $.ajax({
+	                                type: "POST",
+	                                contentType: "Application/Json-Rpc; charset=utf-8",
+	                                url: "http://localhost:1796/json.rpc?jsonrpc=",
+	                                data: JSON.stringify({ "jsonrpc": "2.0", "method": "GestionIndicadores", "params": [2014, 2, "ALTASHD", "txt_02"], "id": 55 }),
+	                                dataType: "json",
+	                                traditional: true,
+	                                success: function (msg) {
+	                                    for (var i = 0; i < msg.result.length; i++) {
+	                                        var tr = "<tr>";
+	                                        var dataSource = [], result = msg.result;
+	                                        for (var i = 0; i < msg.result.length; i++) {
+	                                            var results = result[i];
+	                                            dataSource.push(   { state: "tipo", year1998: results.TXT_04 },
+                                                    { state: "Detalle", year1998: results.TXT_06 },
+                                                    { state: "Base", year1998: results.TOTAL_BASE },
+                                                    { state: "CEF", year1998: results.CEF },
+                                                    { state: "CNE", year1998: results.CNE },
+                                                    { state: "NOC", year1998: results.NOC },
+                                                    { state: "Tramitados", year1998: results.TRAMITADOS },
+                                                    { state: "Pendientes", year1998: results.PENDIENTES },
+                                                    { state: "Contacto", year1998: results.CONTACTOS },
+                                                    { state: "Cont._Potencial", year1998: results.CONTACTOS_POTENCIAL },
+                                                    { state: "Contactibilidad_potencial", year1998: results.CONTACTABILIDAD_POTENCIAL },
+                                                    { state: "Efectividad", year1998: results.EFECTIVIDAD },
+                                                    { state: "Efectividad/Contacto", year1998: results.EFECT_CONTACTO },
+                                                    { state: "Efectividad/Potencial", year1998: results.EFECT_POTENCIAL });
+	                                        }
+
+	                                        $("#chartContainer21").dxChart({
+	                                            dataSource: dataSource,
+	                                            commonSeriesSettings: {
+	                                                argumentField: "state",
+	                                                type: "bar",
+	                                                hoverMode: "includePoints",
+	                                                point: {
+	                                                    hoverMode: "allArgumentPoints"
+	                                                }
+	                                            },
+	                                            series: [
+                                                { valueField: "year1998", name: "Ventas" }
+	                                            ],
+	                                            title: {
+	                                                text: "Bases"
+	                                            },
+	                                            legend: {
+	                                                verticalAlignment: "bottom",
+	                                                horizontalAlignment: "center",
+	                                                hoverMode: "excludePoints"
+	                                            }
+	                                        
+	                                        }); 
+	                                    } 
+	                                    }
+	                                });
+	                        });
+                </script>
+            <div class="panel panel-default">
+  <!-- Default panel contents -->  
+    <!-- Table -->
+              <table class="table table-hover table-condensed table-bordered table-striped" id="tablita1">
+                <thead>
+   	                 <tr bgcolor="#BDBDBD">
+   	                  <th class="text-align-center" >Registros</th>
+                      <th class="text-align-center" >Típo</th>
+                      <th class="text-align-center" >Total Base</th>
+   	                  <th class="text-align-center">CEF</th>
+                      <th class="text-align-center">CNE</th>
+                      <th class="text-align-center">NOC</th>
+                      <th class="text-align-center" >Tramitados</th>
+   	                  <th class="text-align-center">Pendientes</th>
+                      <th class="text-align-center">Contactos</th>
+                      <th class="text-align-center">Contactos potenciales</th>
+                      <th class="text-align-center">Contactibilidad potencial</th>
+                      <th class="text-align-center">Efectividad</th>
+                      <th class="text-align-center">Efec./Contac.</th>
+                      <th class="text-align-center">Efec/Contac. Potencial</th>
+   	             </thead>
+                    <tbody>
+                    </tbody>
+              </table>
+            </div>           
+        </div>  
+                    <!--Segundo TAB-->
+                    <div>
+                            <div id="Div2" class="k-content">
+                                    <div class="demo-section">
+                                        <p>
+                                            <label for="products">Tipo de Envio:</label><input id="sec2" style="width: 300px" />
+                                        </p>
+                                      <!--  <p>
+                                            <label for="orders">Tipo de Lugar:</label><input id="ter2" disabled="disabled" style="width: 300px" />
+                                        </p>-->
+
+                                        <button class="k-button" id="get2">Ver Escala</button>
+                                    </div>
+                            </div>
+                    <div id="chartContainer2" style="max-width:700px;height: 800px;"></div>
+	           <script>
+	               //TRATAMIENTO DE OBJETO JSON
+	               ///funcion que controla el objeto JSON devuelto por el web service
+	               $(function rpc(mensaje) {
+	                   $.ajax({
+	                       type: "POST",
+	                       contentType: "Application/Json-Rpc; charset=utf-8",
+	                       url: "http://localhost:1796/json.rpc?jsonrpc=",
+	                       data: JSON.stringify({ "jsonrpc": "2.0", "method": "GestionIndicadoresCierre", "params": [2014, 2, "ALTASHD", "txt_03"], "id": 69 }),
+	                       dataType: "json",
+	                       traditional: true,
+	                       success: function (msg) {
+	                           for (var i = 0; i < msg.result.length; i++) {
+	                               var tr = "<tr>";
+	                               var dataSource = [], result = msg.result;
+	                               for (var i = 0; i < msg.result.length; i++) {
+	                                   var results = result[i];
+	                                   dataSource.push(
+                                          { state: "tipo", year1999: results.TXT_04 },
+                                                        { state: "Detalle", year1999: results.TXT_06 },
+                                                        { state: "Marcaciones", year1999: results.MARCACIONES },
+                                                        { state: "Potencial", year1999: results.POTENCIAL },
+                                                        { state: "Marcacion_Fisica", year1999: results.MARCACIONES_FIJA },
+                                                        { state: "Marcacion_Celular", year1999: results.MARCACIONE_CELULAR },
+                                                        { state: "IntentoFijo", year1999: results.INTENTOS_FIJO },
+                                                        { state: "Intento Celular", year1999: results.INTENTOS_CELULAR },
+                                                        { state: "Reintentos", year1999: results.REINTENTOS });;
+	                               }
+
+	                               $("#chartContainer2").dxChart({
+	                                   dataSource: dataSource,
+	                                   commonSeriesSettings: {
+	                                       argumentField: "state",
+	                                       type: "bar",
+	                                       hoverMode: "includePoints",
+	                                       point: {
+	                                           hoverMode: "allArgumentPoints"
+	                                       }
+	                                   },
+	                                   series: [
+                                       { valueField: "year1999", name: "Ventas" }
+	                                   ],
+	                                   title: {
+	                                       text: "Marcaciones"
+	                                   },
+	                                   legend: {
+	                                       verticalAlignment: "bottom",
+	                                       horizontalAlignment: "center",
+	                                       hoverMode: "excludePoints"
+	                                   }
+
+	                               });
+	                           }
+	                       }
+	                   });
+	               });
+                </script>
+                      <div class="panel panel-default">
+  <!-- Default panel contents -->
+
+                         <!-- Table -->
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-condensed table-bordered table-striped " id="tabla_aTraspasar">
+                                <thead>
+   	                             <tr >
+                                  <th>Tipo</th>
+   	                              <th>Marcaciones</th>
+                                  <th>Marcaciones fijo</th>
+                                  <th>Marcaciones celular</th>
+                                  <th>Contactabilidad</th>
+                                  <th>Contactabilidad potencial</th>
+                                  <th>Intentos Fijo</th>
+                                  <th>Intentos Celular</th>
+                                  <th>Reintentos</th>
+   	                             </tr>
+   	                            </thead> 
+                                <tbody>
+                                </tbody>                                
+                            </table>  
+                        </div>   
+                                       
+                     </div>  
+
+                         
+                </div>
+            </div>
+        
+</div>
+
+
+     <!--Estilo del tab*-->
+     <style scoped>           
+                #forecast {
+                    width: 700px auto;
+                    height: 700px auto;
+                    margin: 20px auto;
+                    padding: 15px 15px 0 15px;
+                    background: url('null') transparent repeat 0 0;
+                }
+                #forecast h2 {
+                    font-weight: lighter;
+                    font-size: 5em;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                #forecast h2 span {
+                    background: none;
+                    padding-left: 5px;
+                    font-size: .5em;
+                    vertical-align: top;
+                }
+
+                #forecast p {
+                    margin: 0;
+                    padding: 0;
+                }
+            </style>
+     <!--Estilo del tab-->
+     <script>
+                $(document).ready(function () {
+                    $("#tabstrip").kendoTabStrip({
+                        animation: {
+                            open: {
+                                effects: "fadeIn"
+                            }
+                        }
+                    });
+                });
+            </script>
+        
+     <!--Estilo del combo box-->
+     <style scoped>
+                .demo-section {
+                    width: 460px;
+                    padding: 30px;
+                }
+                .demo-section h2 {
+                    text-transform: uppercase;
+                    font-size: 1.2em;
+                    margin-bottom: 30px;
+                }
+                .demo-section label {
+                    display: inline-block;
+                    width: 120px;
+                    padding-right: 5px;
+                    text-align: right;
+                }
+                .demo-section .k-button {
+                    margin: 20px 0 0 125px;
+                }
+                .k-readonly
+                {
+                    color: gray;
+                }
+            </style>
+
+
+    <!--checkeando los combos-->
+    <script>
+              $(document).ready(function () {
+                  
+                  var products = $("#sec").kendoComboBox({                     
+                      filter: "contains",
+                      dataTextField: "text",
+                      dataValueField: "value",
+                      dataSource: [
+                       { text: "celular/Fijo", value: "txt_02" },
+                       { text: "DECO/REGULAR", value: "txt_03" },
+                       { text: "ABIERTA/CERRADA", value: "txt_04" },
+                       { text: "A/B1/C", value: "txt_05"},
+                       { text: "LIMA/PROVINCIA", value: "txt_06" }
+                      ], suggest: true,
+                      index: 1
+                  }).data("kendoComboBox");
+
+                  $("#get").click(function () {
+                      var productInfo = "Tipo Seleccionado: { id: " + products.value() + ", nombre: " + products.text() + " }";
+                      ///////
+                      $(function rpc(mensaje) {
+                          $.ajax({
+                              type: "POST",
+                              contentType: "Application/Json-Rpc; charset=utf-8",
+                              url: "http://localhost:1796/json.rpc?jsonrpc=",
+                              data: JSON.stringify({ "jsonrpc": "2.0", "method": "GestionIndicadores", "params": [2014, 2, "ALTASHD", products.value()], "id": 69 }),
+                              dataType: "json",
+                              traditional: true,
+                              success: function (msg) {
+                                  $("#tablita1 td").remove();
+                                  for (var i = 0; i < msg.result.length; i++) {
+                                      var tr = "<tr>";
+                                      var td1 = "<td>" + msg.result[i].TXT_04 + "</td>";
+                                      var td2 = "<td>" + msg.result[i].TXT_06 + "</td>";
+                                      var td3 = "<td>" + msg.result[i].TOTAL_BASE + "</td>";
+                                      var td4 = "<td>" + msg.result[i].CEF + "</td>";
+                                      var td5 = "<td>" + msg.result[i].CNE + "</td>";
+                                      var td6 = "<td>" + msg.result[i].NOC + "</td>";
+                                      var td7 = "<td>" + msg.result[i].TRAMITADOS + "</td>";
+                                      var td8 = "<td>" + msg.result[i].PENDIENTES + "</td>";
+                                      var td9 = "<td>" + msg.result[i].CONTACTOS + "</td>";
+                                      var td10 = "<td>" + msg.result[i].CONTACTOS_POTENCIAL + "</td>";
+                                      var td11 = "<td>" + msg.result[i].CONTACTABILIDAD_POTENCIAL + "</td>";
+                                      var td12 = "<td>" + msg.result[i].EFECTIVIDAD + "</td>";
+                                      var td13 = "<td>" + msg.result[i].EFECT_CONTACTO + "</td>";
+                                      var td14 = "<td>" + msg.result[i].EFECT_POTENCIAL + "</td></tr>";
+                                  }     $("#tablita1").append(tr + td1 + td2 + td3 + td4 + td5 + td6 + td7 + td8 + td9+ td10+ td11+ td12+ td13+ td14);
+                              }
+
+
+                          });
+
+                      });///END
+                      alert("Detalles del combo:\n" + productInfo);
+                  });
+              });
+            </script>
+    <script>
+        $(document).ready(function () {
+            
+            var products = $("#sec2").kendoComboBox({
+                filter: "contains",
+                dataTextField: "text",
+                dataValueField: "value",
+                dataSource: [
+                        { text: "celular/Fijo", value: "txt_02" },
+                        { text: "DECO/REGULAR", value: "txt_03" },
+                        { text: "ABIERTA/CERRADA", value: "txt_04" },
+                        { text: "A/B1/C", value: "txt_05"},
+                        { text: "LIMA/PROVINCIA", value: "txt_06" }
+                ], suggest: true,
+                index: 1
+            }).data("kendoComboBox");
+
+
+            $("#get2").click(function () {
+                var productInfo = "Tipo Seleccionado: { id: " + products.value() + ", nombre: " + products.text() + " }";
+                ///////
+                $(function rpc(mensaje) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "Application/Json-Rpc; charset=utf-8",
+                        url: "http://localhost:1796/json.rpc?jsonrpc=",
+                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "GestionIndicadoresCierre", "params": [2014, 2, "ALTASHD", products.value()], "id": 69 }),
+                        dataType: "json",
+                        traditional: true,
+                        success: function (msg) {
+                            $("#tabla_aTraspasar td").remove();
+                                    for (var i = 0; i < msg.result.length; i++) {
+                                        var tr = "<tr>";
+                                        var td1 = "<td>" + msg.result[i].TXT_04 + "</td>";
+                                        var td2 = "<td>" + msg.result[i].TXT_06 + "</td>";                                        
+                                        var td3 = "<td>" + msg.result[i].MARCACIONES + "</td>";
+                                        var td4 = "<td>" + msg.result[i].POTENCIAL + "</td>";
+                                        var td5 = "<td>" + msg.result[i].MARCACIONES_FIJA + "</td>";
+                                        var td6 = "<td>" + msg.result[i].MARCACIONE_CELULAR + "</td>";
+                                        var td7 = "<td>" + msg.result[i].INTENTOS_FIJO + "</td>";
+                                        var td8 = "<td>" + msg.result[i].INTENTOS_CELULAR + "</td>";
+                                        var td9 = "<td>" + msg.result[i].REINTENTOS + "</td></tr>";
+                                        $("#tabla_aTraspasar").append(tr + td1 + td2 + td3 + td4 + td5 + td6 + td7 + td8 + td9);
+                                    }
+                                }
+                        
+
+                    });
+
+                });///END
+                alert("Detalles del combo:\n" + productInfo);
+            });
+        });
+        
+            </script> 
+
+
+

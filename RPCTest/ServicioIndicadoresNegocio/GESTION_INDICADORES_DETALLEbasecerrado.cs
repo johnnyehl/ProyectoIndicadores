@@ -19,3 +19,4 @@ namespace ServicioIndicadoresNegocio
         public Decimal REINTENTOS { get; set; }
 
     }
+}

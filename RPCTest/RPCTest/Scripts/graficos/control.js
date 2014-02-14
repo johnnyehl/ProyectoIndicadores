@@ -150,6 +150,64 @@
                 if (selectedYear == "Ventas") {
                 }
                 if (selectedYear == "Bases") {
+					                        $(function rpc(mensaje) {
+	                            $.ajax({
+	                                type: "POST",
+	                                contentType: "Application/Json-Rpc; charset=utf-8",
+	                                url: "http://localhost:1796/json.rpc?jsonrpc=",
+	                                data: JSON.stringify({ "jsonrpc": "2.0", "method": "GestionIndicadores", "params": [2014, 2, "ALTASHD", "txt_02"], "id": 55 }),
+	                                dataType: "json",
+	                                traditional: true,
+	                                success: function (msg) {
+	                                    for (var i = 0; i < msg.result.length; i++) {
+	                                        var tr = "<tr>";
+	                                        var dataSource = [], result = msg.result;
+	                                        for (var i = 0; i < msg.result.length; i++) {
+	                                            var results = result[i];
+	                                            dataSource.push(   { state: "tipo", year1998: results.TXT_04 },
+                                                    { state: "Detalle", year1998: results.TXT_06 },
+                                                    { state: "Base", year1998: results.TOTAL_BASE },
+                                                    { state: "CEF", year1998: results.CEF },
+                                                    { state: "CNE", year1998: results.CNE },
+                                                    { state: "NOC", year1998: results.NOC },
+                                                    { state: "Tramitados", year1998: results.TRAMITADOS },
+                                                    { state: "Pendientes", year1998: results.PENDIENTES },
+                                                    { state: "Contacto", year1998: results.CONTACTOS },
+                                                    { state: "Cont._Potencial", year1998: results.CONTACTOS_POTENCIAL },
+                                                    { state: "Contactibilidad_potencial", year1998: results.CONTACTABILIDAD_POTENCIAL },
+                                                    { state: "Efectividad", year1998: results.EFECTIVIDAD },
+                                                    { state: "Efectividad/Contacto", year1998: results.EFECT_CONTACTO },
+                                                    { state: "Efectividad/Potencial", year1998: results.EFECT_POTENCIAL });
+	                                        }
+
+	                                        $("#chartContainer24").dxChart({
+	                                            dataSource: dataSource,
+	                                            commonSeriesSettings: {
+	                                                argumentField: "state",
+	                                                type: "bar",
+	                                                hoverMode: "includePoints",
+	                                                point: {
+	                                                    hoverMode: "allArgumentPoints"
+	                                                }
+	                                            },
+	                                            series: [
+                                                { valueField: "year1998", name: "Ventas" }
+	                                            ],
+	                                            title: {
+	                                                text: "Bases"
+	                                            },
+	                                            legend: {
+	                                                verticalAlignment: "bottom",
+	                                                horizontalAlignment: "center",
+	                                                hoverMode: "excludePoints"
+	                                            }
+	                                        
+	                                        }); 
+	                                    } 
+	                                    }
+	                                });
+	                        });
+
                 }
 
                 $(".selected-year").text(selectedYear);
@@ -324,6 +382,7 @@
                     $("#chartContainer21").show("slow");
                     $("#chartContainer22").show("slow");
                     $("#chartContainer23").show("slow");
+					$("#chartContainer24").show("slow");
 
                 }
                 if (selectedYear == "Ventas por cluster") {
@@ -420,6 +479,7 @@
                     $("#chartContainer21").hide("slow");//grafico sph 1
                     $("#chartContainer22").hide("slow");//grafico sph2
                     $("#chartContainer23").hide("slow");//grafico sph3
+					$("#chartContainer24").show("slow");
                     $("#tprovincia").hide("slow");
                     $("#chartContainer32").hide("slow");//grafico venta por provincia
 
@@ -511,6 +571,7 @@
                     $("#chartContainer21").hide("slow");//grafico sph 1
                     $("#chartContainer22").hide("slow");//grafico sph2
                     $("#chartContainer23").hide("slow");//grafico sph3
+                    $("#chartContainer24").hide("slow");//grafico sph3
                     $("#tcluster").hide("slow");
                     $("#chartContainer33").hide("slow");//grafico cluster
 

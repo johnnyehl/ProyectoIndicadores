@@ -247,10 +247,10 @@
 						<a href="paginas/Dashboard4.html"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">Reporte Diario Temático</span></a>
 					</li>
                    	<li>
-						<a href="Content/ajax/inline-charts.html"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Graficos</span><span class="badge bg-color-greenLight pull-right inbox-badge">Stilo</span></a>
+						<a href="Content/ajax/inline-charts.html"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Graficos Johnny</span><span class="badge bg-color-greenLight pull-right inbox-badge">Stilo</span></a>
 					</li>
                     <li>
-						<a href="#"><i class="fa fa-lg fa-fw fa-smile-o"><em>3</em></i> <span class="menu-item-parent">Pruebas</span><b class="collapse-sign"><em class="fa fa-expand-o"></em></b></a>
+						<a href="Content/ajax/Probando.html"><i class="fa fa-lg fa-fw fa-smile-o"><em>3</em></i> <span class="menu-item-parent">Graficos Jordy</span><b class="collapse-sign"><em class="fa fa-expand-o"></em></b></a>
                         <ul>
 							<li>
 								<a href="paginas/checkbox.html">Checkbox</a>
