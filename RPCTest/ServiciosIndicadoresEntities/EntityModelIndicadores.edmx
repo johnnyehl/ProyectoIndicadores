@@ -10,6 +10,7 @@
           <EntitySet Name="APPS" EntityType="EntityModelIndicadores.Store.APPS" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GESTION_BASES" EntityType="EntityModelIndicadores.Store.GESTION_BASES" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GESTION_CONF_VARIABLES" EntityType="EntityModelIndicadores.Store.GESTION_CONF_VARIABLES" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GESTION_FILTROS" EntityType="EntityModelIndicadores.Store.GESTION_FILTROS" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GESTION_INDICADORES_DETALLE" EntityType="EntityModelIndicadores.Store.GESTION_INDICADORES_DETALLE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GESTION_INDICADORES_RESUMEN" EntityType="EntityModelIndicadores.Store.GESTION_INDICADORES_RESUMEN" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GESTION_VARIABLES" EntityType="EntityModelIndicadores.Store.GESTION_VARIABLES" store:Type="Tables" store:Schema="dbo" store:Name="GESTION_VARIABLES">
@@ -93,6 +94,15 @@
           <Property Name="UNIDAD" Type="nvarchar" MaxLength="50" />
           <Property Name="ESTADO" Type="nvarchar" MaxLength="1" />
         </EntityType>
+        <EntityType Name="GESTION_FILTROS">
+          <Key>
+            <PropertyRef Name="IDFILTRO" />
+          </Key>
+          <Property Name="IDFILTRO" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CODOBJ" Type="nvarchar" MaxLength="20" />
+          <Property Name="CODFILTRO" Type="nvarchar" MaxLength="3" />
+          <Property Name="FILTRO" Type="nvarchar" MaxLength="150" />
+        </EntityType>
         <EntityType Name="GESTION_INDICADORES_DETALLE">
           <Key>
             <PropertyRef Name="ID" />
@@ -153,7 +163,7 @@
           <Property Name="ANHO" Type="numeric" />
           <Property Name="MES" Type="numeric" />
           <Property Name="DIA" Type="numeric" />
-          <Property Name="FECHA" Type="numeric" />
+          <Property Name="FECHA" Type="date" />
           <Property Name="CODVAR" Type="nvarchar" MaxLength="20" />
           <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="50" />
           <Property Name="VALOR" Type="numeric" />
@@ -274,6 +284,7 @@
           </AssociationSet>
           <EntitySet Name="GESTION_CONF_VARIABLES" EntityType="EntityModelIndicadores.GESTION_CONF_VARIABLES" />
           <EntitySet Name="GESTION_VARIABLES" EntityType="EntityModelIndicadores.GESTION_VARIABLES" />
+          <EntitySet Name="GESTION_FILTROS" EntityType="EntityModelIndicadores.GESTION_FILTROS" />
           <EntitySet Name="GESTION_INDICADORES_RESUMEN" EntityType="EntityModelIndicadores.GESTION_INDICADORES_RESUMEN" />
         </EntityContainer>
         <EntityType Name="APP_ACCESO">
@@ -460,6 +471,15 @@
           <Property Type="String" Name="UNIDAD" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ESTADO" MaxLength="3" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="GESTION_FILTROS">
+          <Key>
+            <PropertyRef Name="IDFILTRO" />
+          </Key>
+          <Property Type="Decimal" Name="IDFILTRO" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CODOBJ" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CODFILTRO" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FILTRO" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="GESTION_INDICADORES_RESUMEN">
           <Key>
             <PropertyRef Name="IDRESUMEN" />
@@ -469,7 +489,7 @@
           <Property Type="Decimal" Name="ANHO" Precision="18" Scale="0" />
           <Property Type="Decimal" Name="MES" Precision="18" Scale="0" />
           <Property Type="Decimal" Name="DIA" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="FECHA" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="FECHA" Precision="0" />
           <Property Type="String" Name="CODVAR" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="DESCRIPCION" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="VALOR" Precision="18" Scale="0" />
@@ -630,6 +650,16 @@
                 <ScalarProperty Name="CODI_GEST" ColumnName="CODI_GEST" />
                 <ScalarProperty Name="CODOBJ" ColumnName="CODOBJ" />
                 <ScalarProperty Name="IDVARIABLE" ColumnName="IDVARIABLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GESTION_FILTROS">
+            <EntityTypeMapping TypeName="EntityModelIndicadores.GESTION_FILTROS">
+              <MappingFragment StoreEntitySet="GESTION_FILTROS">
+                <ScalarProperty Name="FILTRO" ColumnName="FILTRO" />
+                <ScalarProperty Name="CODFILTRO" ColumnName="CODFILTRO" />
+                <ScalarProperty Name="CODOBJ" ColumnName="CODOBJ" />
+                <ScalarProperty Name="IDFILTRO" ColumnName="IDFILTRO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

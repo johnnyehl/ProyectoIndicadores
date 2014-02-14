@@ -76,6 +76,9 @@
     <Compile Include="GESTION_CONF_VARIABLES.cs">
       <DependentUpon>EntityModelIndicadores.tt</DependentUpon>
     </Compile>
+    <Compile Include="GESTION_FILTROS.cs">
+      <DependentUpon>EntityModelIndicadores.tt</DependentUpon>
+    </Compile>
     <Compile Include="GESTION_INDICADORES_DETALLE.cs">
       <DependentUpon>EntityModelIndicadores.tt</DependentUpon>
     </Compile>

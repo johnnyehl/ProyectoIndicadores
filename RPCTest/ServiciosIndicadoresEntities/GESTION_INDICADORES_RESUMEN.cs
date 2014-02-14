@@ -19,7 +19,7 @@ namespace ServiciosIndicadoresEntities
         public Nullable<decimal> ANHO { get; set; }
         public Nullable<decimal> MES { get; set; }
         public Nullable<decimal> DIA { get; set; }
-        public Nullable<decimal> FECHA { get; set; }
+        public Nullable<System.DateTime> FECHA { get; set; }
         public string CODVAR { get; set; }
         public string DESCRIPCION { get; set; }
         public Nullable<decimal> VALOR { get; set; }

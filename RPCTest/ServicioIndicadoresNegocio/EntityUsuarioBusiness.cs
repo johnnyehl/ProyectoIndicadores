@@ -173,17 +173,16 @@ namespace ServicioIndicadoresNegocio
             }
         }
         [JsonRpcMethod]
-        public List<GESTION_INDICADORES_RESUMEN> GestionIndicadoresResumen(String codobj, int anho, int mes, int dia)
+        public List<GESTIONINDICADORESRESUMEN> GestionIndicadoresResumen(String codobj, int anho, int mes)
         {
             using (var cnx = new IndicadoresEntities())
             {
-                var resumen = cnx.Database.SqlQuery<GESTION_INDICADORES_RESUMEN>(
-                    " select DESCRIPCION, VALOROBJ, LIMA, PROVINCIA "
+                var resumen = cnx.Database.SqlQuery<GESTIONINDICADORESRESUMEN>(
+                    " select DESCRIPCION, VALOR, LIMA, PROVINCIA "
                     + " from gestion_indicadores_resumen"
                     + " where CODOBJ = '" + codobj + "'"
-                    + " and ANHO = " + anho
-                    + " and MES = " + mes
-                    + " and DIA = " + dia).ToList();
+                    + " and ANHO = " + anho.ToString()
+                    + " and MES = " + mes.ToString()).ToList();
                 return resumen;
             }
 
