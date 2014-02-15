@@ -148,6 +148,63 @@
                 $("#chartContainer32").hide("slow");
 
                 if (selectedYear == "Ventas") {
+				
+                    $("#chartContainer21").show("slow");//grafico sph 1
+                    $("#chartContainer22").show("slow");//grafico sph2
+                    $("#chartContainer23").show("slow");//grafico sph3
+					$("#tsph").show("slow"); 
+					$("#tcluster").hide("slow");
+                    $("#chartContainer33").hide("slow");//grafico de cluster
+                    $("#tprovincia").hide("slow");
+                    $("#chartContainer32").hide("slow");//grafico venta por provincia
+					$("#TablaIndi").hide("slow");//Tablas Indicadores
+					$("#chartContainerBases").hide("slow");//grafico sph3	
+					
+                }
+				if (selectedYear == "Indicadores") {
+				
+				 $(function rpc(mensaje) {
+               $.ajax({
+                   type: "POST",
+                   contentType: "Application/Json-Rpc",
+                   url: "http://localhost:1796/json.rpc?jsonrpc=",
+                   data: JSON.stringify({
+                       "jsonrpc": "2.0",
+                       "method": "GestionIndicadoresResumen", "params": ["ALTASHD",2014,2], "id": 1
+                   }),
+                   dataType: "json",
+                   traditional: true,
+                   success: function (msg) {
+			 $("#tindi").html("");
+                //       $("#TablaIndi").remove();
+                      // alert(msg.result);
+                       for (var i = 0; i < msg.result.length ; i++) {
+                           var tr="<tr>";
+                          var td1= "<td>" + msg.result[i].DESCRIPCION +  "</td>";
+                           var td2= "<td>" + msg.result[i].VALOR + "</td>";
+                           var td3= "<td>" + msg.result[i].LIMA + "</td>";
+                           var td4= "<td>" + msg.result[i].PROVINCIA + "</td>";
+                           var tr2 = "</tr>";
+                           $("#tindi").append(tr+td1+td2+td3+td4+tr2);
+                       }
+                       
+                   }
+               });
+           });
+							       
+                    $("#chartContainer21").hide("slow");//grafico sph 1
+                    $("#chartContainer22").hide("slow");//grafico sph2
+                    $("#chartContainer23").hide("slow");//grafico sph3
+					$("#tsph").hide("slow"); 
+					$("#tcluster").hide("slow");
+                    $("#chartContainer33").hide("slow");//grafico de cluster
+                    $("#tprovincia").hide("slow");
+                    $("#chartContainer32").hide("slow");//grafico venta por provincia
+					$("#chartContainerBases").hide("slow");//grafico sph3	
+
+				$("#TablaIndi").show("slow");//grafico sph3	
+				
+	
                 }
                 if (selectedYear == "Bases") {
 					                        $(function rpc(mensaje) {
@@ -180,7 +237,7 @@
                                                     { state: "Efectividad/Potencial", year1998: results.EFECT_POTENCIAL });
 	                                        }
 
-	                                        $("#chartContainer24").dxChart({
+	                                        $("#chartContainerBases").dxChart({
 	                                            dataSource: dataSource,
 	                                            commonSeriesSettings: {
 	                                                argumentField: "state",
@@ -207,6 +264,18 @@
 	                                    }
 	                                });
 	                        });
+					$("#tsph").hide("slow");
+                    $("#chartContainer21").hide("slow");//grafico sph 1
+                    $("#chartContainer22").hide("slow");//grafico sph2
+                    $("#chartContainer23").hide("slow");//grafico sph3		
+					$("#tcluster").hide("slow");
+                    $("#chartContainer33").hide("slow");//grafico de cluster
+                    $("#tprovincia").hide("slow");
+                    $("#chartContainer32").hide("slow");//grafico venta por provincia
+					$("#TablaIndi").hide("slow");//Tablas Indicadores
+					
+					$("#chartContainerBases").show("slow");//grafico sph3		
+
 
                 }
 
@@ -374,15 +443,16 @@
 
 
                     $("#tcluster").hide("slow");
+					$("#chartContainerBases").hite("slow") //guardamos las bases
                     $("#chartContainer33").hide("slow");//grafico de cluster
                     $("#tprovincia").hide("slow");
                     $("#chartContainer32").hide("slow");//grafico venta por provincia
+					$("#TablaIndi").hide("slow");//Tablas Indicadores
 
                     $("#tsph").show("slow");
                     $("#chartContainer21").show("slow");
                     $("#chartContainer22").show("slow");
                     $("#chartContainer23").show("slow");
-					$("#chartContainer24").show("slow");
 
                 }
                 if (selectedYear == "Ventas por cluster") {
@@ -479,9 +549,10 @@
                     $("#chartContainer21").hide("slow");//grafico sph 1
                     $("#chartContainer22").hide("slow");//grafico sph2
                     $("#chartContainer23").hide("slow");//grafico sph3
-					$("#chartContainer24").show("slow");
+					$("#chartContainerBases").hide("slow"); //guardamos las bases
                     $("#tprovincia").hide("slow");
                     $("#chartContainer32").hide("slow");//grafico venta por provincia
+					$("#TablaIndi").hide("slow");//Tablas Indicadores
 
                     $("#tcluster").show("slow");
                     $("#chartContainer33").show("slow");//grafico de cluster
@@ -571,9 +642,10 @@
                     $("#chartContainer21").hide("slow");//grafico sph 1
                     $("#chartContainer22").hide("slow");//grafico sph2
                     $("#chartContainer23").hide("slow");//grafico sph3
-                    $("#chartContainer24").hide("slow");//grafico sph3
+                    $("#chartContainerBases").hide("slow");//grafico sph3
                     $("#tcluster").hide("slow");
                     $("#chartContainer33").hide("slow");//grafico cluster
+					$("#TablaIndi").hide("slow");//Tablas Indicadores
 
                     $("#tprovincia").show("slow");
                     $("#chartContainer32").show("slow");//grafico venta por provincia

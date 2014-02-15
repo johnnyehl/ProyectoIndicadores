@@ -18,7 +18,7 @@
      <div class="panel panel-default">
          <div class="panel-heading"></div>
          <div class="panel-body">
-             <table class="table table-hover table-striped table-condensed " id="Tabla1">
+             <table class="table table-hover table-striped table-condensed " id="TablaIndi">
                  <thead>
                      <tr>
                          <th>DATOS</th>
@@ -27,7 +27,7 @@
                          <th class="text-align-center">PROVINCIA</th>
                      </tr>
                  </thead>
-                 <tbody >
+                 <tbody id="TablaIndi2">
                  </tbody>
              </table>
          </div>
@@ -47,7 +47,8 @@
                    dataType: "json",
                    traditional: true,
                    success: function (msg) {
-                       $("#Tabla1 td").remove();
+			 $("#TablaIndi2").html("");
+                //       $("#TablaIndi").remove();
                       // alert(msg.result);
                        for (var i = 0; i < msg.result.length ; i++) {
                            var tr="<tr>";
@@ -56,7 +57,7 @@
                            var td3= "<td>" + msg.result[i].LIMA + "</td>";
                            var td4= "<td>" + msg.result[i].PROVINCIA + "</td>";
                            var tr2 = "</tr>";
-                           $("#Tabla1").append(tr+td1+td2+td3+td4+tr2);
+                           $("#TablaIndi2").append(tr+td1+td2+td3+td4+tr2);
                        }
                        
                    }
