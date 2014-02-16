@@ -92,6 +92,9 @@
     <Compile Include="ROLES.cs">
       <DependentUpon>EntityModelIndicadores.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>EntityModelIndicadores.tt</DependentUpon>
+    </Compile>
     <Compile Include="USUARIOS.cs">
       <DependentUpon>EntityModelIndicadores.tt</DependentUpon>
     </Compile>

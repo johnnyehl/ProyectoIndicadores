@@ -15,32 +15,18 @@ namespace ServiciosIndicadoresEntities
 using System;
     using System.Collections.Generic;
     
-public partial class ROLES
+public partial class sysdiagrams
 {
 
-    public ROLES()
-    {
+    public string name { get; set; }
 
-        this.APP_ACCESO = new HashSet<APP_ACCESO>();
+    public int principal_id { get; set; }
 
-        this.USUARIOS = new HashSet<USUARIOS>();
+    public int diagram_id { get; set; }
 
-    }
+    public Nullable<int> version { get; set; }
 
-
-    public decimal IDROL { get; set; }
-
-    public string CODROL { get; set; }
-
-    public string NOMROL { get; set; }
-
-    public string ESTADO { get; set; }
-
-
-
-    public virtual ICollection<APP_ACCESO> APP_ACCESO { get; set; }
-
-    public virtual ICollection<USUARIOS> USUARIOS { get; set; }
+    public byte[] definition { get; set; }
 
 }
 

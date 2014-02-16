@@ -28,6 +28,7 @@
       FROM [dbo].[GESTION_VARIABLES] AS [GESTION_VARIABLES]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ROLES" EntityType="EntityModelIndicadores.Store.ROLES" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="EntityModelIndicadores.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="USUARIOS" EntityType="EntityModelIndicadores.Store.USUARIOS" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_APP_ACCESO_APPS" Association="EntityModelIndicadores.Store.FK_APP_ACCESO_APPS">
             <End Role="APPS" EntitySet="APPS" />
@@ -100,6 +101,7 @@
           </Key>
           <Property Name="IDFILTRO" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CODOBJ" Type="nvarchar" MaxLength="20" />
+          <Property Name="APLICACION" Type="nvarchar" MaxLength="20" />
           <Property Name="CODFILTRO" Type="nvarchar" MaxLength="3" />
           <Property Name="FILTRO" Type="nvarchar" MaxLength="150" />
         </EntityType>
@@ -166,7 +168,7 @@
           <Property Name="FECHA" Type="date" />
           <Property Name="CODVAR" Type="nvarchar" MaxLength="20" />
           <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="50" />
-          <Property Name="VALOR" Type="numeric" />
+          <Property Name="VALOR" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="VALOROBJ" Type="numeric" />
           <Property Name="LIMA" Type="numeric" />
           <Property Name="PROVINCIA" Type="numeric" />
@@ -197,6 +199,16 @@
           <Property Name="CODROL" Type="nvarchar" MaxLength="20" />
           <Property Name="NOMROL" Type="nvarchar" MaxLength="50" />
           <Property Name="ESTADO" Type="nvarchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -249,16 +261,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Se encontraron errores durante la generación:
-      advertencia 6013: La tabla o vista 'BDINDICADORES.dbo.GESTION_TELEAVANCE' no tiene una clave principal definida y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-      
-      <EntityType Name="GESTION_TELEAVANCE">
-        <Property Name="IDGESTION" Type="numeric" />
-        <Property Name="CODOBJ" Type="nvarchar" MaxLength="20" />
-        <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="50" />
-        <Property Name="PRODUCTO" Type="nvarchar" MaxLength="20" />
-        <Property Name="SEGMENTO" Type="nvarchar" MaxLength="20" />
-      </EntityType>-->
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -286,6 +288,7 @@
           <EntitySet Name="GESTION_VARIABLES" EntityType="EntityModelIndicadores.GESTION_VARIABLES" />
           <EntitySet Name="GESTION_FILTROS" EntityType="EntityModelIndicadores.GESTION_FILTROS" />
           <EntitySet Name="GESTION_INDICADORES_RESUMEN" EntityType="EntityModelIndicadores.GESTION_INDICADORES_RESUMEN" />
+          <EntitySet Name="sysdiagrams" EntityType="EntityModelIndicadores.sysdiagrams" />
         </EntityContainer>
         <EntityType Name="APP_ACCESO">
           <Key>
@@ -479,6 +482,7 @@
           <Property Type="String" Name="CODOBJ" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CODFILTRO" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="FILTRO" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="APLICACION" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="GESTION_INDICADORES_RESUMEN">
           <Key>
@@ -492,10 +496,20 @@
           <Property Type="DateTime" Name="FECHA" Precision="0" />
           <Property Type="String" Name="CODVAR" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="DESCRIPCION" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="VALOR" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="VALOR" Precision="18" Scale="0" Nullable="false" />
           <Property Type="Decimal" Name="VALOROBJ" Precision="18" Scale="0" />
           <Property Type="Decimal" Name="LIMA" Precision="18" Scale="0" />
           <Property Type="Decimal" Name="PROVINCIA" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="version" />
+          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -656,6 +670,7 @@
           <EntitySetMapping Name="GESTION_FILTROS">
             <EntityTypeMapping TypeName="EntityModelIndicadores.GESTION_FILTROS">
               <MappingFragment StoreEntitySet="GESTION_FILTROS">
+                <ScalarProperty Name="APLICACION" ColumnName="APLICACION" />
                 <ScalarProperty Name="FILTRO" ColumnName="FILTRO" />
                 <ScalarProperty Name="CODFILTRO" ColumnName="CODFILTRO" />
                 <ScalarProperty Name="CODOBJ" ColumnName="CODOBJ" />
@@ -678,6 +693,17 @@
                 <ScalarProperty Name="ANHO" ColumnName="ANHO" />
                 <ScalarProperty Name="CODOBJ" ColumnName="CODOBJ" />
                 <ScalarProperty Name="IDRESUMEN" ColumnName="IDRESUMEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EntityModelIndicadores.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

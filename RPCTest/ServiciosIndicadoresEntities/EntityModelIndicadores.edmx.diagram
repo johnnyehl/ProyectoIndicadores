@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="63081d078c41447cab29c6842d31eddd" Name="Diagrama1" ZoomLevel="40">
+      <Diagram DiagramId="63081d078c41447cab29c6842d31eddd" Name="Diagrama1" ZoomLevel="77">
         <EntityTypeShape EntityType="EntityModelIndicadores.APP_ACCESO" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EntityModelIndicadores.APPS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EntityModelIndicadores.GESTION_BASES" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
@@ -16,8 +16,9 @@
         <AssociationConnector Association="EntityModelIndicadores.FK_USUARIOS_ROLES" ManuallyRouted="false" />
         <EntityTypeShape EntityType="EntityModelIndicadores.GESTION_CONF_VARIABLES" Width="2.5" PointX="4.5" PointY="25.25" IsExpanded="true" />
         <EntityTypeShape EntityType="EntityModelIndicadores.GESTION_VARIABLES" Width="1.5" PointX="6.3711366049810954" PointY="16.765605114756898" IsExpanded="true" />
-        <EntityTypeShape EntityType="EntityModelIndicadores.GESTION_FILTROS" Width="1.5" PointX="5.50497066858456" PointY="11.895166715558231" />
+        <EntityTypeShape EntityType="EntityModelIndicadores.GESTION_FILTROS" Width="1.5" PointX="3.25" PointY="9.75" />
         <EntityTypeShape EntityType="EntityModelIndicadores.GESTION_INDICADORES_RESUMEN" Width="1.5" PointX="4.2607620843969114" PointY="1.3135309374488569" />
+        <EntityTypeShape EntityType="EntityModelIndicadores.sysdiagrams" Width="1.5" PointX="2.2066148567044244" PointY="24.073214020614145" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

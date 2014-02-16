@@ -48,13 +48,19 @@
     <Compile Include="GESTION_BASESDTO.cs" />
     <Compile Include="GESTION_CONF_VARIABLESAssembler.cs" />
     <Compile Include="GESTION_CONF_VARIABLESDTO.cs" />
+    <Compile Include="GESTION_FILTROSAssembler.cs" />
+    <Compile Include="GESTION_FILTROSDTO.cs" />
     <Compile Include="GESTION_INDICADORES_DETALLEAssembler.cs" />
     <Compile Include="GESTION_INDICADORES_DETALLEDTO.cs" />
+    <Compile Include="GESTION_INDICADORES_RESUMENAssembler.cs" />
+    <Compile Include="GESTION_INDICADORES_RESUMENDTO.cs" />
     <Compile Include="GESTION_VARIABLESAssembler.cs" />
     <Compile Include="GESTION_VARIABLESDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ROLESAssembler.cs" />
     <Compile Include="ROLESDTO.cs" />
+    <Compile Include="sysdiagramsAssembler.cs" />
+    <Compile Include="sysdiagramsDTO.cs" />
     <Compile Include="USUARIOSAssembler.cs" />
     <Compile Include="USUARIOSDTO.cs" />
   </ItemGroup>

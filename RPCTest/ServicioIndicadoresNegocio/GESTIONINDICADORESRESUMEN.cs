@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServicioIndicadoresNegocio
 {
-    public class GESTIONINDICADORESRESUMEN
+    public class GestionIndicadoresResumen
     {        
         public string DESCRIPCION { get; set; }
         public Nullable<decimal> VALOR { get; set; }
