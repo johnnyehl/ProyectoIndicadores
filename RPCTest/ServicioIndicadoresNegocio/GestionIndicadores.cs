@@ -25,4 +25,16 @@ namespace ServicioIndicadoresNegocio
 
 
     }
+    public partial class Listar_filtros
+    {
+        public String codfiltro { get; set; }
+
+    }
+    public partial class MostrarFiltroSeleccionado
+    {
+        public String filtro { get; set; }
+
+    }
+
+
 }

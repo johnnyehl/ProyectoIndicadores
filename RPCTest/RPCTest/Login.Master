@@ -260,20 +260,20 @@
 		                        type: "POST",
 		                        contentType: "Application/Json-Rpc; charset=utf-8",
 		                        url: "http://localhost:1796/json.rpc?jsonrpc=",
-		                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "ValidarLogin", "params": [$("#email").val(), $("#pass").val()], "id": 1 }),
+		                        data: JSON.stringify({ "jsonrpc": "2.0", "method": "TablaSph", "params": [2014,2, "ALTASHD"], "id": 1 }),
 		                        dataType: "json",
 		                        traditional: true,
 		                        success: function (msg) {
-		                            //alert(msg.result[0].IDUSUARIO)
-		                            if (msg.result != null) {
-		                                alert("Bienvenido :" + msg.result[0].NOMBRE + " " + msg.result[0].APEPAT + " " + msg.result[0].APEMAT)
-		                                window.location = ("inicio.aspx");
-		                            }
-		                            else {
-		                                alert("Usuario o Clave Incorrecta");
-		                            $("#firstname").css({ background: "#FF0000" });
+		                            alert(msg.result)
+		                            //if (msg.result != null) {
+		                            //    alert("Bienvenido :" + msg.result[0].NOMBRE + " " + msg.result[0].APEPAT + " " + msg.result[0].APEMAT)
+		                            //    window.location = ("inicio.aspx");
+		                            //}
+		                            //else {
+		                            //    alert("Usuario o Clave Incorrecta");
+		                            //$("#firstname").css({ background: "#FF0000" });
 		                                
-		                            }
+		                            //}
 		                        }
 
 		                    });

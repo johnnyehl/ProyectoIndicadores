@@ -77,14 +77,63 @@ namespace ServicioIndicadoresNegocio
         {
             using (var context = new IndicadoresEntities())
             {
-                var blogNames = context.Database.SqlQuery<Sph>(
-                "select FECHA,COUNT(distinct txt_01) logueados,COUNT(distinct txt_01) * 7 horas_trabajadas, "
+                String Strsql = "select FECHA,COUNT(distinct txt_01) logueados,COUNT(distinct txt_01) * 7 horas_trabajadas, "
                 + "SUM(val_03) ventas,        (SELECT ROUND(VALOR,0) FROM GESTION_VARIABLES V WHERE CODOBJ=X.CODOBJ AND CODVAR = 'OBJ_VTA_DIA_NEG') "
                 + "objetivo,       SUM(val_03)/(COUNT(distinct txt_01) * 7) sph,"
-                + "(sum(case when txt_03 = 'DECO' then val_03 else 0 end)+sum(case when txt_03 = 'REGULAR' then val_03 else 0 end)) as TotalPaq,"
-                + "sum(case when txt_03 = 'REGULAR' then val_03 else 0 end) regular,"
-                + "sum(case when txt_03 = 'DECO' then val_03 else 0 end) deco,"
-                + "sum(case when txt_06 = 'LIMA' then val_03 else 0 end) lima,"
+                + "(SUM val_03) as TotalPaq,";
+                
+                switch(codobj)
+                {
+                    case "ALPRCTV": 
+                        Strsql += "";
+                        break;
+                    case "ALPRDTH":
+                        Strsql += "";
+                        break;
+                    case "ALTASHD":
+                        Strsql += " sum(case when txt_03 = 'REGULAR' then val_03 else 0 end) regular,"
+                                  + "sum(case when txt_03 = 'DECO' then val_03 else 0 end) deco,";
+                        break;
+                    case "EQPNEG":
+                        Strsql += " sum(case when txt_07 = 'REGULAR' then val_03 else 0 end) regular,"
+                                  + "sum(case when txt_07 = 'DECO' then val_03 else 0 end) deco,";
+                        break;
+                    case "EQPRES":
+                        Strsql += " sum(case when txt_07 = 'REGULAR' then val_03 else 0 end) regular,"
+                                  + "sum(case when txt_07 = 'DECO' then val_03 else 0 end) deco,";
+                        break;
+                    case "MANTE": 
+                        Strsql += "";
+                        break;
+                    case "MULTPR":
+                        Strsql +=  "sum(case when txt_03 = 'GAP 40' then val_03 else 0 end) GAP 40,"
+                                  + "sum(case when txt_03 = 'GAP 70' then val_03 else 0 end) GAP 70,";                      
+                        break;
+                    case "MVFTS": 
+                        Strsql += "";
+                        break;
+                    case "MVNEG": 
+                        Strsql += "";
+                        break;
+                    case "MVRES": 
+                        Strsql += "";
+                        break;
+                    case "MVUNEG": 
+                        Strsql += "";
+                        break;
+                    case "SVAS": 
+                        Strsql += "";
+                        break;
+                    case "ZSEGRES":
+                        Strsql += "";
+                        break;
+                    case "ZSEGTR": 
+                        Strsql += "";
+                        break;
+
+                }
+
+                Strsql += "sum(case when txt_06 = 'LIMA' then val_03 else 0 end) lima,"
                    + " sum(case when txt_06 = 'PROVINCIA' then val_03 else 0 end) provincia,"
                 + "SUM(case when val_03 > 0 then val_08 else 0 end) tmo     "
                 + "from dbo.GESTION_INDICADORES_DETALLE X "
@@ -95,9 +144,12 @@ namespace ServicioIndicadoresNegocio
                     + " AND DIA >= 1"
                + " AND CODOBJ = '" + codobj + "'"
                 + " AND ESTADO = 'A' group by fecha, "
-                + " CODOBJ order by 1").ToList();
+                + " CODOBJ order by 1";
+                var blogNames = context.Database.SqlQuery<Sph>(Strsql
+                ).ToList();
                 return blogNames;
             }
+            
         }
 
 
@@ -111,6 +163,18 @@ namespace ServicioIndicadoresNegocio
                  +"from GESTION_TELEAVANCE "
                   + "where PRODUCTO='" + PRODUCTO + "' "
                   + " and SEGMENTO='" + SEGMENTO + "' ").ToList();
+                return blogNames;
+            }
+        }
+        [JsonRpcMethod]
+        public List<TablaConfig> ObtenerConfig(String APLICACION, String CODOBJ)
+        {
+            using (var context = new IndicadoresEntities())
+            {
+                var blogNames = context.Database.SqlQuery<TablaConfig>(
+                "select ORDEN,X,Y,Y1,Y2,Y3,Y4,TIPO from dbo.GESTION_TABLAS_CONF "
+                + "where CODOBJ = '" + CODOBJ + "' "
+                + "and APLICACION='" + APLICACION + "'").ToList();
                 return blogNames;
             }
         }
@@ -190,5 +254,36 @@ namespace ServicioIndicadoresNegocio
             }
 
         }
+        [JsonRpcMethod]
+        public List<Listar_filtros> GeneraDatosfiltrados(String codobj, String aplicacion)
+        {
+            using (var aplicaf = new IndicadoresEntities())
+            {
+                var sqlm = aplicaf.Database.SqlQuery<Listar_filtros>(
+                      " SELECT CODFILTRO, filtro "
+                    + " FROM GESTION_FILTROS "
+                    + " WHERE CODOBJ = '" + codobj + "'"
+                    + " AND APLICACION ='" + aplicacion + "'").ToList();
+                return sqlm;
+            }
+
+        }
+        [JsonRpcMethod]
+        public List<MostrarFiltroSeleccionado> GeneraBusquedafiltro(String codobj, String Aplicacion, String valorDinamico)
+        {
+            using (var aplicacionfx = new IndicadoresEntities())
+            {
+                var sqlfiltro2 = aplicacionfx.Database.SqlQuery<MostrarFiltroSeleccionado>(
+                   "SELECT FILTRO "
+                    + " FROM GESTION_FILTROS "
+                    + " WHERE CODOBJ = '" + codobj + "'"
+                    + " AND APLICACION ='" + Aplicacion + "'"
+                    + " AND CODFILTRO='" + valorDinamico + "'"
+                    ).ToList();
+                return sqlfiltro2;
+            }
+        }
+
+
     }
 }

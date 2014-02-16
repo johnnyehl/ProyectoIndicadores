@@ -60,6 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sph.cs" />
     <Compile Include="GestionCampañas.cs" />
+    <Compile Include="TablaConfig.cs" />
     <Compile Include="ValueObject\Sph.cs" />
   </ItemGroup>
   <ItemGroup>
