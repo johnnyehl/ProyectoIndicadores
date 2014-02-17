@@ -42,7 +42,7 @@
                    url: "http://localhost:1796/json.rpc?jsonrpc=",
                    data: JSON.stringify({
                        "jsonrpc": "2.0",
-                       "method": "GestionIndicadoresResumen", "params": ["ALTASHD",2014,2], "id": 1
+                       "method": "ObtenerGestionIndicadoresResumen", "params": ["ALTASHD",$("#anho").html(),$("#mes").html(),$("#dia").html()], "id": 1
                    }),
                    dataType: "json",
                    traditional: true,
@@ -66,8 +66,7 @@
       </script>
  
 
-	<script scr="Scripts/bootstrap/bootstrap.min.js"></script>
-    <script scr="Scripts/libs/jquery-2.0.2.min.js"></script>
+	<script src="Scripts/bootstrap/bootstrap.min.js"></script>
 
  <!--</body> -->
 <!-- </html> -->
