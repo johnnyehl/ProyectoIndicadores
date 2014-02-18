@@ -248,6 +248,7 @@
     <Content Include="Scripts\graficos\knockout-3.0.0.js" />
     <Content Include="Scripts\libs\jquery-2.0.2.min.js" />
     <Content Include="Scripts\libs\jquery-ui-1.10.3.min.js" />
+    <Content Include="Scripts\liston.js" />
     <Content Include="Scripts\notification\SmartNotification.min.js" />
     <Content Include="Scripts\plugin\bootstrap-slider\bootstrap-slider.min.js" />
     <Content Include="Scripts\plugin\easy-pie-chart\jquery.easy-pie-chart.min.js" />

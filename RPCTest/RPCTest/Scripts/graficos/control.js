@@ -170,7 +170,7 @@
                    url: "http://localhost:1796/json.rpc?jsonrpc=",
                    data: JSON.stringify({
                        "jsonrpc": "2.0",
-                       "method": "GestionIndicadoresResumen", "params": ["ALTASHD",2014,2], "id": 1
+                       "method": "GestionIndicadoresResumen", "params": [$("#ano").html(), $("#mes").html(), "ALTASHD"], "id": 1
                    }),
                    dataType: "json",
                    traditional: true,
@@ -299,12 +299,12 @@
                                 type: "POST",
                                 contentType: "Application/Json-Rpc; charset=utf-8",
                                 url: "http://localhost:1796/json.rpc?jsonrpc=",
-                                data: JSON.stringify({ "jsonrpc": "2.0", "method": "TablaSph", "params": [2014, 2, "ALTASHD"], "id": 1 }),
+                                data: JSON.stringify({ "jsonrpc": "2.0", "method": "TablaSph", "params": [$("#ano").html(),$("#mes").html(), "ALTASHD"], "id": 1 }),
                                 dataType: "json",
                                 traditional: true,
                             success: function (msg) {
-                               
-                               $("#sph").html("");
+                                //alert($("#selec").val());
+
                                 //alert(msg.result[0].FECHA);
                                 //alert("hola");
                                 for (var i = 0; i < msg.result.length; i++) {
@@ -463,7 +463,7 @@
                                 type: "POST",
                                 contentType: "Application/Json-Rpc; charset=utf-8",
                                 url: "http://localhost:1796/json.rpc?jsonrpc=",
-                                data: JSON.stringify({ "jsonrpc": "2.0", "method": "TablaSph", "params": [2014, 2, "ALTASHD"], "id": 1 }),
+                                data: JSON.stringify({ "jsonrpc": "2.0", "method": "TablaSph", "params": [$("#ano").html(), $("#mes").html(), "ALTASHD"], "id": 1 }),
                                 dataType: "json",
                                 traditional: true,
                             success: function (msg) {
@@ -565,7 +565,7 @@
                                 type: "POST",
                                 contentType: "Application/Json-Rpc; charset=utf-8",
                                 url: "http://localhost:1796/json.rpc?jsonrpc=",
-                                data: JSON.stringify({ "jsonrpc": "2.0", "method": "TablaSph", "params": [2014, 2, "ALTASHD"], "id": 1 }),
+                                data: JSON.stringify({ "jsonrpc": "2.0", "method": "TablaSph", "params": [$("#ano").html(), $("#mes").html(), "ALTASHD"], "id": 1 }),
                                 dataType: "json",
                                 traditional: true,
                             success: function (msg) {

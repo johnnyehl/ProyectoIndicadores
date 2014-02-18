@@ -281,16 +281,50 @@
 				<!-- Se puede agregar mas botones al liston para mejorar la usabilidad
 
 				Ejemplos mas que nada de estilos y bootones:-->
-                <span class="ribbon-button-alignment pull-right">
-                <label class="checkbox-inline">
-  <input type="checkbox" id="checkboxEnLinea1" value="opcion_1" /><font color="white">Cuadro 1</font>
-</label>
-<label class="checkbox-inline">
-  <input type="checkbox" id="checkboxEnLinea2" value="opcion_2" /><font color="white">Cuadro 2</font>
-</label>
-<label class="checkbox-inline">
-  <input type="checkbox" id="checkboxEnLinea3" value="opcion_3" /><font color="white">Cuadro 3</font>
-</label> </span>
+                <div class="ribbon-button-alignment pull-right">
+                    <!-- Split button -->
+                                <div class="btn-group btn-group-xs">
+                                  <button type="button" class="btn btn-default" id="prod">Fija</button>
+                                  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu">
+                                    <li><a id="fijo">Fija</a></li>
+                                    <li><a id="movil">Movil</a></li>
+                                  </ul>
+                                 </div>
+                                <div class="btn-group btn-group-xs">
+                                  <button type="button" class="btn btn-default" id="seg">Residencial</button>
+                                  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu">
+                                    <li><a id="res" >Residencial</a></li>
+                                    <li><a id="neg">Negocio</a></li>
+                                  </ul>
+                                </div>
+                                <div class="btn-group btn-group-xs">
+                                  <select class="btn btn-info dropdown-toggle" id="selec">
+                                    
+                                </select>
+                                </div>
+                                 <div class="btn-group btn-group-xs">
+  
+									  <label class="input"> <i class="icon-append fa fa-calendar"></i>
+											<input type="text" id="i" name="request" placeholder="Seleccione fecha" class="datepicker" data-dateformat='dd/mm/yy'>
+											</label>
+
+									 
+                                </div>
+                </div>
+                <!-- Div fecha-->
+                <div id="dia"></div>
+                <div id="mes"></div>
+                <div id="ano"></div>
+                <!-- End Div fecha -->
+               
                 
 <!--
 				<span class="ribbon-button-alignment pull-right">
@@ -300,7 +334,9 @@
 				</span> -->
 			</div>
 			<!-- Fin de la seccion del liston sobre el Main -->
-
+             <!-- Script control cb -->
+            <script src="Scripts/liston.js"></script>
+                <!-- en script cb -->
 			<!-- Contenido Cetral de la Website -->
 			<div id="content">
                 <!-- codigo .net-->
