@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServicioIndicadoresNegocio
 {
-     public class GestionCampañas
+     public class GestionCampanhas
     {
          public String CODOBJ
         {

@@ -80,7 +80,7 @@ namespace ServicioIndicadoresNegocio
                 String Strsql = "select FECHA,COUNT(distinct txt_01) logueados,COUNT(distinct txt_01) * 7 horas_trabajadas, "
                 + "SUM(val_03) ventas,        (SELECT ROUND(VALOR,0) FROM GESTION_VARIABLES V WHERE CODOBJ=X.CODOBJ AND CODVAR = 'OBJ_VTA_DIA_NEG') "
                 + "objetivo,       SUM(val_03)/(COUNT(distinct txt_01) * 7) sph,"
-                + "(SUM val_03) as TotalPaq,";
+                + "SUM ( val_03) as TotalPaq,";
                 
                 switch(codobj)
                 {
@@ -154,11 +154,11 @@ namespace ServicioIndicadoresNegocio
 
 
         [JsonRpcMethod]
-        public List<GestionCampañas> ObtenerCampañas(String PRODUCTO, String SEGMENTO)
+        public List<GestionCampanhas> ObtenerCampañas(String PRODUCTO, String SEGMENTO)
         {
             using (var context = new IndicadoresEntities())
             {
-                var blogNames = context.Database.SqlQuery<GestionCampañas>(
+                var blogNames = context.Database.SqlQuery<GestionCampanhas>(
                 "select CODOBJ, DESCRIPCION "
                  +"from GESTION_TELEAVANCE "
                   + "where PRODUCTO='" + PRODUCTO + "' "

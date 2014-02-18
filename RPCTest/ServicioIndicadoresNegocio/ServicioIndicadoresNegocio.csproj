@@ -59,7 +59,7 @@
     <Compile Include="GestionIndicadoresResumen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sph.cs" />
-    <Compile Include="GestionCampañas.cs" />
+    <Compile Include="GestionCampanhas.cs" />
     <Compile Include="TablaConfig.cs" />
     <Compile Include="ValueObject\Sph.cs" />
   </ItemGroup>
