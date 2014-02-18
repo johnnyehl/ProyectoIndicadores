@@ -95,12 +95,12 @@ namespace ServicioIndicadoresNegocio
                                   + "sum(case when txt_03 = 'DECO' then val_03 else 0 end) deco,";
                         break;
                     case "EQPNEG":
-                        Strsql += " sum(case when txt_07 = 'REGULAR' then val_03 else 0 end) regular,"
-                                  + "sum(case when txt_07 = 'DECO' then val_03 else 0 end) deco,";
+                        Strsql += " sum(case when txt_03 = 'Gigaset A490' then val_03 else 0 end) gigaset,"
+                        + "sum(case when txt_03 != 'Gigaset A490' then val_03 else 0 end) beetel,";
                         break;
                     case "EQPRES":
-                        Strsql += " sum(case when txt_07 = 'REGULAR' then val_03 else 0 end) regular,"
-                                  + "sum(case when txt_07 = 'DECO' then val_03 else 0 end) deco,";
+                        Strsql += " sum(case when txt_03 = 'Gigaset A490' then val_03 else 0 end) gigaset,"
+                        + "sum(case when txt_03 != 'Gigaset A490' then val_03 else 0 end) beetel,";
                         break;
                     case "MANTE": 
                         Strsql += "";
@@ -167,7 +167,7 @@ namespace ServicioIndicadoresNegocio
             }
         }
         [JsonRpcMethod]
-        public List<TablaConfig> ObtenerFiltros(String APLICACION, String CODOBJ)
+        public List<TablaConfig> ObtenerConfig(String APLICACION, String CODOBJ)
         {
             using (var context = new IndicadoresEntities())
             {
@@ -255,7 +255,7 @@ namespace ServicioIndicadoresNegocio
 
         }
         [JsonRpcMethod]
-        public List<Listar_filtros> GeneraDatosfiltrados(String codobj, String aplicacion)
+        public List<Listar_filtros> ObtenerFiltros(String codobj, String aplicacion)
         {
             using (var aplicaf = new IndicadoresEntities())
             {
@@ -269,7 +269,7 @@ namespace ServicioIndicadoresNegocio
 
         }
         [JsonRpcMethod]
-        public List<MostrarFiltroSeleccionado> GeneraBusquedafiltro(String codobj, String Aplicacion, String valorDinamico)
+        public List<MostrarFiltroSeleccionado> ObtenerFiltroGenerado(String codobj, String Aplicacion, String Codfiltro)
         {
             using (var aplicacionfx = new IndicadoresEntities())
             {
@@ -278,7 +278,7 @@ namespace ServicioIndicadoresNegocio
                     + " FROM GESTION_FILTROS "
                     + " WHERE CODOBJ = '" + codobj + "'"
                     + " AND APLICACION ='" + Aplicacion + "'"
-                    + " AND CODFILTRO='" + valorDinamico + "'"
+                    + " AND CODFILTRO='" + Codfiltro + "'"
                     ).ToList();
                 return sqlfiltro2;
             }
