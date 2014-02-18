@@ -154,7 +154,7 @@ namespace ServicioIndicadoresNegocio
 
 
         [JsonRpcMethod]
-        public List<GestionCampanhas> ObtenerCampañas(String PRODUCTO, String SEGMENTO)
+        public List<GestionCampanhas> ObtenerCampanhas(String PRODUCTO, String SEGMENTO)
         {
             using (var context = new IndicadoresEntities())
             {
@@ -167,7 +167,7 @@ namespace ServicioIndicadoresNegocio
             }
         }
         [JsonRpcMethod]
-        public List<TablaConfig> ObtenerConfig(String APLICACION, String CODOBJ)
+        public List<TablaConfig> ObtenerFiltros(String APLICACION, String CODOBJ)
         {
             using (var context = new IndicadoresEntities())
             {
