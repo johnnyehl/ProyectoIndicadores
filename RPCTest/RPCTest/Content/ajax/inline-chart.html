@@ -1,72 +1,37 @@
+<script src="Scripts/graficos/knockout-3.0.0.js"></script>
+<script src="Scripts/knockout.mapping.js"></script>
 
-<!-- <html> -->
- <!-- <head> -->
-   <!-- <meta charset="utf-8">  -->
-   <!--<title>Tabla</title>-->
-   <link href="Content/css/kendo/kendo.common.min.css" rel="stylesheet" />
-   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-   <link href="Content/css/bootstrap.min.css" rel="stylesheet" />
-   <link href="Content/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <!--</head>-->
- <!--<body>-->
+  <ul class="thumbnails" data-bind="foreach: result">
+    <li ><span data-bind="text:  FECHA " ></span></li>
+</ul>
 
-
-     <div class="container">
-
- 
-    <div class="col-sm-6">
-     <div class="panel panel-default">
-         <div class="panel-heading"></div>
-         <div class="panel-body">
-             <table class="table table-hover table-striped table-condensed " id="TablaIndi">
-                 <thead>
-                     <tr>
-                         <th>DATOS</th>
-                         <th>BBDD </th>
-                         <th class="text-align-center">LIMA  </th>
-                         <th class="text-align-center">PROVINCIA</th>
-                     </tr>
-                 </thead>
-                 <tbody id="TablaIndi2">
-                 </tbody>
-             </table>
-         </div>
-     </div>
-    </div>
-    </div>
        <script>
-           $(function rpc(mensaje) {
-               $.ajax({
-                   type: "POST",
-                   contentType: "Application/Json-Rpc",
-                   url: "http://localhost:1796/json.rpc?jsonrpc=",
-                   data: JSON.stringify({
-                       "jsonrpc": "2.0",
-                       "method": "ObtenerGestionIndicadoresResumen", "params": ["ALTASHD",$("#anho").html(),$("#mes").html(),$("#dia").html()], "id": 1
-                   }),
-                   dataType: "json",
-                   traditional: true,
-                   success: function (msg) {
-			 $("#TablaIndi2").html("");
-                //       $("#TablaIndi").remove();
-                      // alert(msg.result);
-                       for (var i = 0; i < msg.result.length ; i++) {
-                           var tr="<tr>";
-                          var td1= "<td>" + msg.result[i].DESCRIPCION +  "</td>";
-                           var td2= "<td>" + msg.result[i].VALOR + "</td>";
-                           var td3= "<td>" + msg.result[i].LIMA + "</td>";
-                           var td4= "<td>" + msg.result[i].PROVINCIA + "</td>";
-                           var tr2 = "</tr>";
-                           $("#TablaIndi2").append(tr+td1+td2+td3+td4+tr2);
-                       }
-                       
-                   }
-               });
-           });
+           ////////////////////////////////////////////////////////////////
+           
+           function bindModel(data) {
+               viewModel = ko.mapping.fromJS(data);
+               console.log(viewModel);
+               ko.applyBindings(viewModel);
+           }
+          $.ajax({
+              type: "POST",
+              contentType: "Application/Json-Rpc",
+              url: "http://localhost:1796/json.rpc?jsonrpc=",
+              data: JSON.stringify({
+                  "jsonrpc": "2.0",
+                  "method": "TablaSph", "params": [2014, 2, "ALTASHD"], "id": 1
+              }),
+              dataType: "json",
+              traditional: true,
+              success: function (msg) {
+                 // alert(msg.result[0].FECHA);
+                 //console.log(msg);
+                 bindModel(msg);
+                 
+              }
+          })
       </script>
  
-
-	<script src="Scripts/bootstrap/bootstrap.min.js"></script>
 
  <!--</body> -->
 <!-- </html> -->
