@@ -1,18 +1,52 @@
 <script src="Scripts/graficos/knockout-3.0.0.js"></script>
 <script src="Scripts/knockout.mapping.js"></script>
 
+
+<button id="btn"></button>
+<table class="table table-hover table-striped table-condensed">
+	<thead>
+		<tr>
+			<th>FECHA</th>
+            <th>TOTAL PAQUETE</th>
+            <th>DECO</th>
+		</tr>	
+	</thead>
+	<tbody data-bind="foreach: result">
+		<tr>
+			<td>
+                <span data-bind="text: FECHA " ></span>
+			</td>
+            <td>
+                <span data-bind="text: TotalPaq " ></span>
+			</td>
+            <td>
+                <span data-bind="text: deco " ></span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
   <ul class="thumbnails" data-bind="foreach: result">
     <li ><span data-bind="text:  FECHA " ></span></li>
 </ul>
 
        <script>
            ////////////////////////////////////////////////////////////////
-           
+           var global;
            function bindModel(data) {
                viewModel = ko.mapping.fromJS(data);
                console.log(viewModel);
                ko.applyBindings(viewModel);
            }
+           function captura(msg) {
+               global = msg;
+               alert(global[0].FECHA);
+           }
+           $("#btn").click(function() {
+               alert(global[0].FECHA);
+               
+           })
+          
           $.ajax({
               type: "POST",
               contentType: "Application/Json-Rpc",
@@ -26,8 +60,8 @@
               success: function (msg) {
                  // alert(msg.result[0].FECHA);
                  //console.log(msg);
-                 bindModel(msg);
-                 
+                  bindModel(msg);
+                  captura(msg.result);
               }
           })
       </script>
